@@ -1,0 +1,108 @@
+<div class="container" style="align-content: center;">
+    <h3 class="h">PORTFOLIO HEADER</h3>
+    <form [formGroup]="createPortForm" (submit)="onSubmit()">
+      <div  class="container" style="align-self: center;">
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Portfolio Name</label>
+              <input type="text" class="form-control" placeholder="Enter Portfolio Name"
+              formControlName="portfolioName">
+              <span class="error_msg" *ngIf="createPortForm.controls['portfolioName'].touched"></span>
+            </div>
+          <br>
+  
+          <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Fund Manager Name</label>
+            <input type="text" class="form-control" placeholder="fundManagerName"
+            formControlName="fundamanagerName">
+            <span class="error_msg" *ngIf="createPortForm.controls['fundamanagerName'].touched">
+            </span>
+          </div>
+          <br>
+      
+          <div class="mb-3">
+            <label class="form-label">Bench Mark</label>
+            <select class="form-control" formControlName="benchMark" style="width: 100%;" placeholder="Enter BenchMark">
+              <option *ngFor="let b of benchMark" value="{{b}}">{{b}}</option>
+          </select>
+            <span class="error_msg" *ngIf="createPortForm.controls['benchMark'].touched">
+            </span>
+          </div>
+          <br>
+  
+          <div class="mb-3">
+              <label class="form-label">Rebalancing Frequency</label>
+              <select class="form-control" formControlName="rebalancingFrequency" style="width: 100%;">
+                  <option *ngFor="let f of rebalancingFrequency" value="{{f}}">{{f}}</option>
+              </select>
+                <span class="error_msg" *ngIf="createPortForm.controls['rebalancingFrequency'].touched">            
+                </span>
+          </div>
+          <br>
+  
+          <div>
+              <label class="form-label">Portfolio Type</label>
+              <select class="form-control" formControlName="portfolioType" style="width: 100%;">
+                  <option *ngFor="let p of portfolioType" value="{{p}}">{{p}}
+              </option>
+                </select>
+                <span class="error_msg" *ngIf="createPortForm.controls['portfolioType'].touched">            
+                </span>
+          </div>
+          <br>
+  
+  
+          <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label">Investment Amount</label>
+              <input type="number" class="form-control" formControlName="investmentValue">
+              <span class="error_msg" *ngIf="createPortForm.controls['investmentValue'].touched && createPortForm.controls['investmentValue'].invalid">
+                <span *ngIf="createPortForm.controls['investmentValue'].errors['required']">Amount is required</span>
+                <span *ngIf="createPortForm.controls['investmentValue'].errors['pattern']">Amount is required</span>
+              </span>
+          </div>
+  
+          <br>
+  
+          <div>
+              <label class="form-label">Base Currency</label>
+              <select class="form-control" formControlName="baseCurrency" style="width: 100%;">
+                  <option *ngFor="let c of baseCurrency" value="{{c}}">{{c}}</option>
+                </select>
+                <span class="error_msg" *ngIf="createPortForm.controls['baseCurrency'].touched">              
+                </span>
+          </div>
+          <br>
+  
+          <div>
+            <label class="form-label">Exchange</label>
+            <select class="form-control" formControlName="exchange" style="width: 100%;">
+                <option *ngFor="let e of exchange" value="{{e}}">{{e}}</option>
+              </select>
+              <span class="error_msg" *ngIf="createPortForm.controls['exchange'].touched">
+              </span>
+        </div>
+        <br>
+  
+          <div>
+              <label class="form-label">Investment Theme</label>
+              <select class="form-control" formControlName="investmentTheme" style="width: 100%;">
+                  <option *ngFor="let i of investmentTheme" value="{{i}}">{{i}}
+              </option>
+                </select>
+                <span class="error_msg" *ngIf="createPortForm.controls['investmentTheme'].touched && createPortForm.controls['exchange'].invalid">
+                 
+                </span>
+          </div>
+          <br>
+          <div>
+              <button type="submit" class="btn btn-success" value="Submit">Save
+              </button>
+          </div>
+      </div>
+     </form>
+  </div>
+  
+  
+  
+  
+  
+     <!-- <span *ngIf="createPortForm.controls['baseCurrency'].errors['required']">Select Base Currency</span> -->

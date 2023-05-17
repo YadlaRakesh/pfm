@@ -1,0 +1,37 @@
+<button routerLink="/header" type="button" class="btn btn-success">New Portfolio</button>
+<br>
+
+
+        <div class="scroll">
+            <table class="table table-striped">
+            <thead>
+            <th>portfolioName</th>
+            <th>fundamanagerName</th>
+            <th>portfolioType</th>
+            <th>baseCurrency</th>
+            <th>rebalancingFrequency</th>
+            <th>benchMark</th>
+            <th>exchange</th>
+            <th>investmentValue</th>
+            <th>Theme</th>
+            <th>Action</th>
+            </thead>
+            <tbody>
+            <tr *ngFor="let p of portfolioArray">
+            <td>{{p.portfolioName}}</td>
+            <td>{{p.fundamanagerName}}</td>
+            <td>{{p.portfolioType}}</td>
+            <td>{{p.baseCurrency}}</td>
+            <td>{{p.rebalancingFrequency}}</td>
+            <td>{{p.benchMark}}</td>
+            <td>{{p.exchange}}</td>
+            <td>{{p.investmentValue}}</td>
+            <td>{{p.investmentTheme}}</td>
+            <td>
+                <button class="btn btn-success" routerLink="/theme">View</button>
+                <button (click) = "deletePortfolio(p.portfolioName)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>
+            </td>
+            </tr>
+            </tbody>
+            </table>
+            </div>

@@ -1,0 +1,78 @@
+<!-- <p>createasset works!</p> -->
+<html>
+ <body>
+  <div class="alert alert-success alert-dismissible fade show text-center col-md-3" style="margin-left: 37%;" role="alert">
+    <strong>Success !</strong> AssetClass is created 
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+  <form>
+   <section class="getintouch">
+    <h1 class="title">create Asset</h1>
+    <div class="container">
+      <div class="contact-form row">
+        <div class="form-field col-lg-6">
+          <input id="name" class="input-text" type="text" name="" formControlName="id">
+          <label for="name" class="label">Asset Id</label>
+        </div>
+       <div class="form-field col-lg-6">
+         <input id="name" class="input-text" type="text" name="" formControlName="assetClass">
+         <label for="name" class="label">Asset Class</label>
+       </div>
+       
+       <div class="form-field col-lg-6">
+         <input id="subasset" class="input-text" type="text" name="" formControlName="assetSubClass">
+         <label for="subasset" class="label">sub-asset Class</label>
+       </div>
+       <div class="form-field col-lg-6">
+        <select id="risk" class="input-text" formControlName="risk">
+          <option selected>Choose...</option>
+          <option>High</option>
+          <option>Medium</option>
+          <option>Low</option>
+
+      </select>
+          <label for="risk" class="label">Risk</label>
+        </div>
+        <div class="form-field col-lg-6">
+        
+          <select id="inputState" class="input-text" formControlName="investmentHorizon">
+            <option selected>Choose...</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+  
+        </select>
+          <label for="investmentHorizon" class="label">investment Horizon</label>
+         
+        </div>
+        <div class="form-field col-lg-6">
+          <select id="inputState" class="input-text" formControlName="liquidity">
+            <option selected>Choose...</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+  
+        </select>
+       <label for="liquidity" class="label">liquidity</label>
+        </div>
+        <div class="form-field col-lg-6">
+          <select id="inputState" class="input-text" formControlName="returns">
+            <option selected>Choose...</option>
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+  
+        </select>
+       <label for="liquidity" class="label">Returns</label>
+        </div>
+      <div class="form-field col-lg-6">
+         <input class="submit-btn" type="submit" value="submit" name=""></div>
+       
+      
+      </div>
+    </div>
+   </section>
+  </form>
+ </body>
+
+</html>
