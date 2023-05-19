@@ -26,6 +26,7 @@ import { SecurityListComponent } from './security-list/security-list.component';
 import { InvestmentThemeComponent } from './investment-theme/investment-theme.component';
 import { AssetClassComponent } from './asset-class/asset-class.component';
 import { ViewthemeComponent } from './viewtheme/viewtheme.component';
+import { IthemeComponent } from './itheme/itheme.component';
 
 
 
@@ -50,7 +51,8 @@ import { ViewthemeComponent } from './viewtheme/viewtheme.component';
     SecurityListComponent,
     InvestmentThemeComponent,
     AssetClassComponent,
-    ViewthemeComponent
+    ViewthemeComponent,
+    IthemeComponent
   ],
   imports: [
     BrowserModule,

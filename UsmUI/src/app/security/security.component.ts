@@ -25,9 +25,6 @@ export class SecurityComponent implements OnInit {
   createPortForm: FormGroup;
   security:Security;
   
-
-  
-
   constructor(private allStocksService:AllStocksService,
     private securityService:SecurityService,
       public http:HttpClient,
@@ -36,17 +33,16 @@ export class SecurityComponent implements OnInit {
       ) { }
 
   ngOnInit(): void {
+    this.securityService.getAllSecurities().subscribe(data =>{
+      this.securityArray = data;
+    })
       this.searchSecurityName = this.formgroup.group({ 
       securityName:'',
       units:'',
       price:'',
       total:'',
       transactionDate:'',
-      getSecurities(){
-        this.securityService.getAllSecurities().subscribe(data =>{
-          this.securityArray = data;
-        })
-      }
+      
     });
   }
   getSecurities(){

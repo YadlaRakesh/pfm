@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Security } from '../models/Securities.model';
+import { Theme } from '../models/Theme.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +20,10 @@ export class SecurityService {
   }
 
   deleteSecurity(securityName:string): Observable<Object>{
-    return this.http.delete(`${this.baseUrl}/${securityName}`);
+    return this.http.delete(`http://localhost:8899/api/composition/delete/${securityName}`);
+  }
+
+  postTheme(theme:Theme): Observable<any>{
+    return this.http.post("http://localhost:8899/api/add/theme",theme);
   }
 }

@@ -1,0 +1,12 @@
+.s{
+    width: 150px;
+     float:left;
+     height:100px;
+     /* background:gray;  */ 
+     margin:10px; 
+     margin-left: 100px; 
+     margin-top: 50px;
+}
+.btn{
+    margin-left: 50%;
+}

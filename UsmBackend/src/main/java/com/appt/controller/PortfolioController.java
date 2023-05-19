@@ -22,8 +22,8 @@ import com.appt.repository.ThemeRepository;
 import com.appt.service.PortfolioControllerService;
 
 @RestController
-@CrossOrigin("http://localhost:8000")
-@RequestMapping("/api/portfolio/")
+@CrossOrigin(origins = "*")
+@RequestMapping("/api/portfolio")
 public class PortfolioController {
 	
 	@Autowired

@@ -22,7 +22,7 @@ import com.appt.repository.NseRepository;
 import com.appt.service.AdminService;
 
 @RestController
-@CrossOrigin("http://localhost:8000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/admin")
 public class AdminController {
 	

@@ -16,7 +16,7 @@ import com.appt.model.InvestmentTheme;
 import com.appt.repository.InvestmentThemeRepository;
 
 @RestController
-@CrossOrigin("http://localhost:8000")
+@CrossOrigin("*")
 @RequestMapping("/api")
 public class InvestmentThemeController {
 	@Autowired

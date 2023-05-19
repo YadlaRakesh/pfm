@@ -28,12 +28,11 @@ export class SecurityListComponent implements OnInit {
     this.securityService.deleteSecurity(securityName).subscribe(data =>{
     });
     // confirm('Deleted!!');
-    let text;
-if (confirm("Press a button!") == true) {
-  text = "You pressed OK!";
-} else {
-  text = "You canceled!";
-}
+    // Swal.fire(
+    //   'Good job!',
+    //   'You clicked the button!',
+    //   'success'
+    // )
     location.reload();
   }
 

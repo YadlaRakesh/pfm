@@ -23,7 +23,7 @@ import com.appt.repository.CompositionRepository;
 import com.appt.service.CompositionService;
 
 @RestController
-@CrossOrigin("http://localhost:8000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/composition/")
 public class CompositionController {
 	

@@ -11,7 +11,7 @@ import com.appt.model.AssetClass;
 import com.appt.repository.AssetClassRepository;
 
 @RestController
-@CrossOrigin("http://localhost:8000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class AssetClassController {
 	

@@ -18,7 +18,7 @@ import com.appt.dto.NseResponseDto;
 import com.appt.model.Nse;
 import com.appt.service.NseService;
 
-@CrossOrigin("http://localhost:8000")
+@CrossOrigin(origins = "*")
 @RestController
 @RequestMapping("/api/stocks")
 public class NseController {

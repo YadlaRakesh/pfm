@@ -12,7 +12,7 @@ import com.appt.model.User;
 import com.appt.repository.UserRepository;
 
 @RestController
-@CrossOrigin("http://localhost:8000")
+@CrossOrigin(origins = "*")
 @RequestMapping("/api/user")
 public class UserController {
 
