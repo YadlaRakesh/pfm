@@ -42,7 +42,7 @@
 
 .btn btn-outline-secondary{
     /* float:right; */
-    position: absolute;
+    position: relative;
 }
 /* .btn{
     border-radius: 8px;
