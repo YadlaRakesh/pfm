@@ -21,11 +21,12 @@
     margin-left: 20px;
     margin-top: 40px;
 }
-
+.table{
+    border: 3px solid;
+}
 /* .btn.btn-search{
     border-radius: 8px;
     height: 50px;
     
     
 } */
-

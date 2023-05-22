@@ -1,12 +1,34 @@
-.s{
+/* .s{
     width: 150px;
      float:left;
      height:100px;
-     /* background:gray;  */ 
+     background:gray;   
      margin:10px; 
      margin-left: 100px; 
      margin-top: 50px;
-}
+} */
 .btn{
     margin-left: 50%;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}
+.col-sm{
+    background-color: blueviolet;
+    width: 50%;
+    align-content: center;
+    margin-left: 18rem;
+}
+.form-control{
+    height: 3rem;
+    width: 1%;
+}
+.k{
+    margin-top: -1.5rem;
+    margin-left: 1rem;
+}
+.l{
+    margin-left: -5rem;
+}
+.j{
+    margin-bottom: -5rem;
 }
