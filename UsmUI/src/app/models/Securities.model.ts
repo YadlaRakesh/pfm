@@ -3,6 +3,6 @@ export class Security{
     transactionDate?:string;
     units?:number;
     price?:number;
-    totalTransaction?:number;
+    totalTransaction?:any;
     allocation?:number;
 }

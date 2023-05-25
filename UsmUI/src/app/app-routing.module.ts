@@ -22,6 +22,7 @@ import { AssetClassComponent } from './asset-class/asset-class.component';
 import { InvestmentThemeComponent } from './investment-theme/investment-theme.component';
 import { ViewthemeComponent } from './viewtheme/viewtheme.component';
 import { IthemeComponent } from './itheme/itheme.component';
+import { AssetComponent } from './asset/asset.component';
 
 
 
@@ -30,6 +31,7 @@ import { IthemeComponent } from './itheme/itheme.component';
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path:'portfolio',component:SectorComponent},
+  { path:'asset',component:AssetComponent},
   { path:'itheme',component:IthemeComponent},
   { path:'',component:MainHomeComponent,
 

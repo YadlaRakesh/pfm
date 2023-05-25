@@ -1,38 +1,76 @@
-<div class="col-sm">
-    <form [formGroup]="themeForm" (submit)="onSave()">
+<div class= "th">
 
-      <!-- <div class="input-group mb-3" style="width: 200px;float:left;height:50px;margin:10px;margin-left: 100px;margin-top: 125px;">
-        <label>Theme Name</label>
-      <input type="text" formControlName="themeName" class="form-control" placeholder="Enter theme" [value]="themeForm.value.theme" required>
-      </div>
-      <br> -->
+  <h2>Theme</h2>
+ 
+  <form [formGroup]="themeForm" (submit)="onSave()">
+ 
+  <div class="all">
+ 
 
-      <div class="input-group mb-3">
-      <label>Theme Name</label>
-      <br>
-      <input type="text" formControlName="themeName" class="form-control" placeholder="Select Theme" [value]="themeForm.value.themeName"required>
-      <br>
-      </div>
-
-    
-
-      <div class="input-group mb-3" >
-      <label class="k">Risk</label>
-      <input type="text" style="margin-left: -3rem;" formControlName="risk" class="form-control" placeholder="Enter Risk" [value]="themeForm.value.risk" required>
-      <br>
-      </div>
-
-      <div class="input-group mb-3" >
-
-      <label class="j">Investment Horizon</label>      
-      <input type="text" formControlName="investmentHorizon" class="form-control" placeholder="Investment Horizon" [value]="themeForm.value.investmentHorizon" required>
-      <br>
-      </div>
-
-      <!-- <label>Allocation</label>
-      <input type="text" formControlName="allocation" class="form-control" placeholder="allocation" required>
-      <br> -->
-      <button type="submit" class="btn btn-primary">Save</button>
-
-    </form>
+ 
+  <div class="tn">
+ 
+  <label for="themeName">Theme Name</label>
+ 
+  <input type="text" id="themeName" name="themeName" formControlName="themeName"  >
+  <span class="error_msg" *ngIf="themeForm.controls['themeName'].touched"></span>
+  </div>
+ 
+ 
+ 
+ 
+ 
+  <div class="ac"> 
+  <label for="assetClass">Asset Class </label>
+  <select id="inputState" class="input-text" formControlName="assetClass" placeholder="Enter assetClass" [value]="themeForm.value.assetClass" (click)="onClick()"> 
+    <option *ngFor="let a of assetClass" value="{{a}}">{{a.assetClass}}</option>
+  </select>
+  <span class="error_msg" *ngIf="themeForm.controls['assetClass'].touched">
+  </span>
+  </div>
+ 
+ 
+ 
+ 
+  <div class="rk">
+ 
+  <label for="risk"> Risk Level</label>
+ 
+  <input type="text" id="risk" name="risk" formControlName="risk">
+  <span class="error_msg" *ngIf="themeForm.controls['risk'].touched"></span>
+  </div>
+ 
+ 
+ 
+ 
+ 
+ 
+  <div class="in">
+ 
+  <label for="investmentHorizon">Investment Horizon</label>
+ 
+  <input type="text" id="investmentHorizon" name="investmentHorizon" formControlName="investmentHorizon">
+  <span class="error_msg" *ngIf="themeForm.controls['investmentHorizon'].touched"></span>
+  </div>
+ 
+ 
+ 
+ 
+  <!-- <div class="ad">
+ 
+  <label for="assetDescription">Asset Description</label>
+ 
+  <input type="text" id="assetDescription" name="assetDescription" >
+ 
+  </div> -->
+ 
+ 
+ 
+ 
+  <div class="su"><button type="submit">Save</button></div>
+ 
+  </div>
+ 
+  </form>
+ 
   </div>

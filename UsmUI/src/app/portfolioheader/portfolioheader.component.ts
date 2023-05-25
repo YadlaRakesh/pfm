@@ -17,25 +17,33 @@ export class PortfolioheaderComponent implements OnInit {
   rebalancingFrequency:string[];
   investmentTheme:string[];
   portfolioType: string[];
+  p:string[];
   benchMark:string[];
 
   createPortForm = new FormGroup({
+    portfolioName: new FormControl(''),
     exchange: new FormControl(''),
     rebalancingFrequency: new FormControl(''),
     investAmount: new FormControl(''),   
     portfolioType: new FormControl(''),
     investmentTheme: new FormControl(''),
-    baaseCurrency: new FormControl(''),
+    baseCurrency: new FormControl(''),
     benchMark: new FormControl(''),
     investmentValue: new FormControl(''),
     currentValue: new FormControl(''),
-    returns: new FormControl(''),
-    fundamanagerName:new FormControl('')
+    returns: new FormControl('')
+    // fundamanagerName:new FormControl('')
   })
 
   constructor(private portfolioService:PortfolioheaderService, private route:Router) { }
 
   ngOnInit(): void {
+
+    // this.portfolioService.getPortfolio().subscribe(data =>{
+    //   this.p=data;
+    // })
+
+  
 
     this.baseCurrency  = ['INR'];
     this.exchange = ['NSE','BSE'];
@@ -52,8 +60,8 @@ export class PortfolioheaderComponent implements OnInit {
       investmentValue: new FormControl('', [Validators.required]),
       investmentTheme: new FormControl('', [Validators.required]),
       exchange: new FormControl('', [Validators.required]),
-      rebalancingFrequency: new FormControl('', [Validators.required]),
-      fundamanagerName: new FormControl('', [Validators.required])
+      rebalancingFrequency: new FormControl('', [Validators.required])
+      // fundamanagerName: new FormControl('', [Validators.required])
     });
 
   }
@@ -68,8 +76,8 @@ export class PortfolioheaderComponent implements OnInit {
       portfolioType: this.createPortForm.value.portfolioType,
       benchMark: this.createPortForm.value.benchMark,
       exchange: this.createPortForm.value.exchange,
-      investmentValue: this.createPortForm.value.investmentValue,
-      fundamanagerName:this.createPortForm.value.fundamanagerName
+      investmentValue: this.createPortForm.value.investmentValue
+      // fundamanagerName:this.createPortForm.value.fundamanagerName
     };
     confirm('Header Submitted')
     console.log(this.portfolio);
@@ -77,12 +85,13 @@ export class PortfolioheaderComponent implements OnInit {
     this.portfolioService.postPortfolio(this.portfolio).subscribe({
       next: (data)=>{
         this.route.navigate(['/security'])
-      },
+        console.log(data);
+      localStorage.setItem("name",this.portfolio.portfolioName);
+      localStorage.setItem("iv",this.portfolio.investmentValue);
+            },
       error:(err)=>{
+        console.log(err);
       }
     });
-
-
   }
-
 }

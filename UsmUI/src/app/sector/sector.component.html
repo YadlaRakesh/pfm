@@ -5,27 +5,29 @@
         <div class="scroll">
             <table class="table table-bordered" border="5rem">
             <thead class="table-light">
-            <th>portfolioName</th>
-            <th>fundamanagerName</th>
-            <th>portfolioType</th>
-            <th>baseCurrency</th>
-            <th>rebalancingFrequency</th>
-            <th>benchMark</th>
-            <th>exchange</th>
-            <th>investmentValue</th>
+            <th>Portfolio Name</th>
+            <!-- <th>fundamanagerName</th> -->
+            <th>Portfolio Type</th>
+            <th>Base Currency</th>
+            <th>Rebalancing Frequency</th>
+            <th>Bench Mark</th>
+            <th>Exchange</th>
+            <th>Investmen tValue</th>
+            <th>Balance</th>
             <th>Theme</th>
             <th>Action</th>
             </thead>
             <tbody>
             <tr *ngFor="let p of portfolioArray">
             <td>{{p.portfolioName}}</td>
-            <td>{{p.fundamanagerName}}</td>
+            <!-- <td>{{p.fundamanagerName}}</td> -->
             <td>{{p.portfolioType}}</td>
             <td>{{p.baseCurrency}}</td>
             <td>{{p.rebalancingFrequency}}</td>
             <td>{{p.benchMark}}</td>
             <td>{{p.exchange}}</td>
             <td>{{p.investmentValue}}</td>
+            <td>{{p.balance}}</td>
             <td>{{p.investmentTheme}}</td>
             <td>
                 <button class="btn btn-success" routerLink="/theme">View</button>

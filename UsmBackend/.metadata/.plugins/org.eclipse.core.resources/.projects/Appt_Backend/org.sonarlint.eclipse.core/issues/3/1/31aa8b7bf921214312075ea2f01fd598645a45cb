@@ -1,16 +1,0 @@
-
-ˆ
-java:S1488/"]Immediately return this expression instead of assigning it to the temporary variable "compo".(’Öç±HRMINORZ
-CODE_SMELL
-k	java:S125""<This block of commented-out lines of code should be removed.(‚ùðÝøÿÿÿÿHRMAJORZ
-CODE_SMELL
-v
-java:S4684)"@Replace this persistent entity with a simple POJO or DTO object.(†âìíüÿÿÿÿHRCRITICALZVULNERABILITY
-k	java:S1254"<This block of commented-out lines of code should be removed.(—øâäùÿÿÿÿHRMAJORZ
-CODE_SMELL
-h
-java:S1128"8Remove this unused import 'javax.persistence.ManyToOne'.(ÇÑ²ŽøÿÿÿÿHRMINORZ
-CODE_SMELL
-e
-java:S1128";Remove this unused import 'com.appt.model.PortfolioHeader'.(É°’+HRMINORZ
-CODE_SMELL

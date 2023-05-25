@@ -27,6 +27,7 @@ import { InvestmentThemeComponent } from './investment-theme/investment-theme.co
 import { AssetClassComponent } from './asset-class/asset-class.component';
 import { ViewthemeComponent } from './viewtheme/viewtheme.component';
 import { IthemeComponent } from './itheme/itheme.component';
+import { AssetComponent } from './asset/asset.component';
 
 
 
@@ -52,7 +53,8 @@ import { IthemeComponent } from './itheme/itheme.component';
     InvestmentThemeComponent,
     AssetClassComponent,
     ViewthemeComponent,
-    IthemeComponent
+    IthemeComponent,
+    AssetComponent
   ],
   imports: [
     BrowserModule,

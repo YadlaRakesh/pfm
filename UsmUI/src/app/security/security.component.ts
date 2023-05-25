@@ -5,10 +5,12 @@ import { Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { allstocks } from 'src/models/allstocks';
 import { nse } from '../models/Nse';
+import { Portfolio } from '../models/Portfolio.model';
 import { Security } from '../models/Securities.model';
 
 
 import { AllStocksService } from '../services/all-stocks.service';
+import { PortfolioheaderService } from '../services/portfolioheader.service';
 import { SecurityService } from '../services/security.service';
 
 @Component({
@@ -19,22 +21,34 @@ import { SecurityService } from '../services/security.service';
 export class SecurityComponent implements OnInit {
   public securityArray: Security[];
   securityName:string;
+  investmentValue:any;
+  // InvestmentValue:any;
   // stocksArr1:allstocks[];
-  stocksArr1:nse[];
+  stocksArr1:nse;
   searchSecurityName: any;
   createPortForm: FormGroup;
   security:Security;
-  
+  stock:nse[];
+  nse:any;
+  selected:string;
+  last:any;
+  total:any;
+  portfolioName:string;
+  availableBalance:any;
+  portfolio:Portfolio;
   constructor(private allStocksService:AllStocksService,
     private securityService:SecurityService,
       public http:HttpClient,
       public formgroup:FormBuilder,
-      private route:Router,
+      private route:Router,private portfolioService:PortfolioheaderService
       ) { }
 
   ngOnInit(): void {
     this.securityService.getAllSecurities().subscribe(data =>{
       this.securityArray = data;
+    });
+    this.securityService.getAllstocks().subscribe(data=>{
+      this.stock=data;
     })
       this.searchSecurityName = this.formgroup.group({ 
       securityName:'',
@@ -74,17 +88,30 @@ if (confirm("Press a button!") == true) {
   // }
   // }
 
-  
-
-  onClick(): void{
-    this.http.get<any>("http://localhost:8899/api/stocks/all").subscribe(
+  onClick(selected): void{
+    this.http.get<any>("http://localhost:8899/api/stocks/all/").subscribe(
       res => { const user = res.find((a:any) => {
         console.log(this.searchSecurityName.value.securityName);
         // console.log(a.securityName);
-        if (a.securityName == this.searchSecurityName.value.securityName){
-          this.searchSecurityName.value.price=a.close;
-          console.log(this.searchSecurityName.value.price)
+        
+        if(a.symbol == this.searchSecurityName.value.securityName){
+          localStorage.getItem(this.portfolioName)
+
+          localStorage.setItem("price",a.price)
+          this.searchSecurityName.value.price=a.last
+          this.security.price=this.searchSecurityName.value.price
+         // this.total=this.searchSecurityName.value.units * this.searchSecurityName.value.price;
+          
+          console.log(this.searchSecurityName.value.last);
         }
+        let investmentValue= localStorage.getItem('InvestmentValue');
+        //this.total=this.searchSecurityName.value.units * this.searchSecurityName.value.price;
+        //localStorage.setItem("total",this.total);
+        //localStorage.setItem("totalTrans",this.security.totalTransaction)
+        // if (a.securityName == this.searchSecurityName.value.securityName){
+        //   this.searchSecurityName.value.price=a.last;
+        //   console.log(this.searchSecurityName.value.price)
+        // }
         // else{
         //   localStorage.setItem("price",'Nothing');
         // } 
@@ -98,6 +125,47 @@ if (confirm("Press a button!") == true) {
   
   }
 
+  // onSelect(selected){
+
+  //    // this.symbol=val;)
+    
+  //   this.http.get<any>("http://localhost:8899/api/stocks/all").subscribe(
+    
+  //    res => {
+    
+  //    const stock = res.find((a:any) => {
+    
+  //    if(a.securityName == this.searchSecurityName.value.securityName
+  //     ){
+    
+  //   localStorage.setItem("Price",a.last)
+    
+  //   this.searchSecurityName.value.price = a.last
+    
+  //   this.security.price = this.searchSecurityName.value.price
+    
+  //   console.log(this.searchSecurityName.value.price);
+    
+  //   this.security.currentValue=this.searchSecurityName.value.price*this.searchSecurityName.value.units;
+    
+  //   this.availableBalance=this.portfolioService.investmentValue-this.security.currentValue;
+    
+  //   console.log(this.searchSecurityName.value.currentValue);
+    
+  //   console.log()
+    
+  //    }
+    
+  //    })
+    
+  //    }
+    
+  //   )
+    
+    
+    
+  //    }
+
   onSave(){
     this.security = {
       securityName: this.searchSecurityName.value.securityName,
@@ -107,19 +175,24 @@ if (confirm("Press a button!") == true) {
       totalTransaction: this.searchSecurityName.value.units * this.searchSecurityName.value.price,
       // allocation:this.searchSecurityName.value.allocation
     };
+    localStorage.setItem("totalTrans",this.security.totalTransaction);
+    let investmentValue=localStorage.getItem("iv");
+
+    localStorage.getItem("totalTrans")
+
+    this.availableBalance=this.portfolio.investmentValue-this.security.totalTransaction;
+    localStorage.setItem("avbl",this.availableBalance);
     confirm('Securities Saved')
     console.log(this.security);
-
-    this.securityService.postSecurity(this.security).subscribe({
+    document.write(investmentValue)
+    this.securityService.postSecurity(this.security,localStorage.getItem("name")).subscribe({
       next: (data)=>{
         // this.route.navigate(['/securitylist'])
+        
       },
       error:(err)=>{
       }
     });
 
   }
-
-  
-
   }

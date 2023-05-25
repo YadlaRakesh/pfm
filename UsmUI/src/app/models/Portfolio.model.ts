@@ -7,8 +7,9 @@ export class Portfolio{
     fundamanagerName?:string;
     benchMark?:string;
     exchange?:string;
-    investmentValue?:number;
+    investmentValue?:any;
     currentValue?:number;
+    balance?:number;
     returns?:number;
     theme?:string;
     noofSecurities?:number;
