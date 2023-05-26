@@ -43,6 +43,17 @@
 
   <div class="col-sm">
     <form [formGroup]="searchSecurityName" (submit)="onSave()">
+
+<div>
+  <p>Received Name:{{receivedName}}</p>
+</div>
+
+<!-- <div>
+  <p>{{handleAmount(()}}</p>
+</div> -->
+      <div>
+        <p>Received Value:{{receivedValue}}</p>
+      </div>
      
       <div class="ac"> 
         <label for="securityName">Security Name</label>
@@ -62,11 +73,14 @@
       <br>
 
       <label>Price</label>
-      <input type="text" formControlName="price" class="form-control" placeholder="Enter Price" [value]="searchSecurityName.value.price" required>
+      <ng-container>
+        <input type="text" formControlName="price" class="form-control" readonly placeholder="Enter Price" required [(ngModel)]="searchSecurityName.value.price">
+      </ng-container>
+    
       <br>
 
       <label>Total</label>
-      <input type="text" formControlName="total" class="form-control" placeholder="Total" [value]="searchSecurityName.value.units * searchSecurityName.value.price" required>
+      <input type="text" formControlName="totalTransaction" class="form-control" placeholder="Total" [value]="searchSecurityName.value.units * searchSecurityName.value.price" required>
       <br>
 
       <!-- <label>Allocation</label>
@@ -82,16 +96,16 @@
   <div class="scroll">
     <table class="table table-striped">
     <thead>
-    <th>SecurityName</th>
-    <th>TransactionDate</th>
+    <th>Security Name</th>
+    <th>Transaction Date</th>
     <th>Units</th>
     <th>Price</th>
-    <th>TotalTransaction</th>
+    <th>Total</th>
     <!-- <th>Allocation</th> -->
     <th>Action</th>
     </thead>
     <tbody>
-    <tr *ngFor="let s of securityArray">
+    <tr *ngFor="let s of array">
     <td>{{s.securityName}}</td>
     <td>{{s.transactionDate}}</td>
     <td>{{s.units}}</td>

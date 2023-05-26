@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { stringify } from 'querystring';
+import { Observable } from 'rxjs';
 import { allstocks } from 'src/models/allstocks';
 import { nse } from '../models/Nse';
 import { Portfolio } from '../models/Portfolio.model';
@@ -12,6 +13,7 @@ import { Security } from '../models/Securities.model';
 import { AllStocksService } from '../services/all-stocks.service';
 import { PortfolioheaderService } from '../services/portfolioheader.service';
 import { SecurityService } from '../services/security.service';
+import { SharedService } from '../services/shared.Service';
 
 @Component({
   selector: 'app-security',
@@ -25,6 +27,7 @@ export class SecurityComponent implements OnInit {
   // InvestmentValue:any;
   // stocksArr1:allstocks[];
   stocksArr1:nse;
+  array:Security[];
   searchSecurityName: any;
   createPortForm: FormGroup;
   security:Security;
@@ -32,21 +35,41 @@ export class SecurityComponent implements OnInit {
   nse:any;
   selected:string;
   last:any;
-  total:any;
+  total:number;
   portfolioName:string;
   availableBalance:any;
   portfolio:Portfolio;
+  receivedName:any;
+  receivedValue:any;
+  numbers:number[]=[];
   constructor(private allStocksService:AllStocksService,
     private securityService:SecurityService,
       public http:HttpClient,
       public formgroup:FormBuilder,
-      private route:Router,private portfolioService:PortfolioheaderService
+      private route:Router,private portfolioService:PortfolioheaderService,
+      private sharedService:SharedService
       ) { }
 
+
   ngOnInit(): void {
-    this.securityService.getAllSecurities().subscribe(data =>{
-      this.securityArray = data;
-    });
+    // this.totalTransaction.push(newValue);
+    // this.getSecurity(this.portfolioName).subscribe(data =>{
+    //   this.array=data;
+    //   console.log(data)
+    // })
+    let pName = localStorage.getItem("name")
+    this.securityService.getSecurityByPortfolioName(pName).subscribe({
+      next: (data)=>{
+        this.array=data;
+        console.log(this.array)
+        // location.reload();
+      }
+    })
+
+    // this.securityService.getAllSecurities().subscribe(data =>{
+    //   this.securityArray = data;
+    // });
+    this.receivedValue = this.sharedService.getValue();
     this.securityService.getAllstocks().subscribe(data=>{
       this.stock=data;
     })
@@ -54,14 +77,47 @@ export class SecurityComponent implements OnInit {
       securityName:'',
       units:'',
       price:'',
-      total:'',
+      totalTransaction:'',
       transactionDate:'',
       
     });
   }
+  getSecurity(portfolioName:string): Observable<Security[]>{
+    const url=`http//localhost:8899/api/composition/get/security/?portfolioName=${portfolioName}`;
+     return this.http.get<Security[]>(url);
+   }
+  
+  // handleTotalAmount(portfolioName:string):number{
+  //   let all=0;
+  //   this.searchSecurityName.forEach((data) => {
+  //     if(data.portfolioName == portfolioName){
+  //       all+=parseFloat(data.total);
+  //     }else{
+  //       console.log('Portfolio Not Found');
+  //     }
+      
+  //   });
+  //   const availableBalance = parseFloat(this.receivedValue)-all;
+  //   localStorage.setItem('TotalAmount',this.availableBalance);
+  //   return availableBalance;
+  // }
+
+
+
+  ngAfterContentInit(){
+    // setThe Received value in local storage
+    //else insufficient amount
+
+    this.receivedValue = localStorage.getItem("iv")
+    console.log(localStorage.getItem("name"))
+    this.receivedName = localStorage.getItem("name")
+
+  }
+
   getSecurities(){
     this.securityService.getAllSecurities().subscribe(data =>{
       this.securityArray = data;
+      location.reload();
     })
   }
    
@@ -95,8 +151,8 @@ if (confirm("Press a button!") == true) {
         // console.log(a.securityName);
         
         if(a.symbol == this.searchSecurityName.value.securityName){
-          localStorage.getItem(this.portfolioName)
-
+          localStorage.getItem("name")
+          
           localStorage.setItem("price",a.price)
           this.searchSecurityName.value.price=a.last
           this.security.price=this.searchSecurityName.value.price
@@ -162,9 +218,10 @@ if (confirm("Press a button!") == true) {
     
   //   )
     
-    
-    
   //    }
+
+
+ 
 
   onSave(){
     this.security = {
@@ -180,14 +237,15 @@ if (confirm("Press a button!") == true) {
 
     localStorage.getItem("totalTrans")
 
-    this.availableBalance=this.portfolio.investmentValue-this.security.totalTransaction;
+    // this.availableBalance=this.portfolio.investmentValue-this.security.totalTransaction;
     localStorage.setItem("avbl",this.availableBalance);
     confirm('Securities Saved')
     console.log(this.security);
-    document.write(investmentValue)
+    // document.write(investmentValue)
     this.securityService.postSecurity(this.security,localStorage.getItem("name")).subscribe({
       next: (data)=>{
         // this.route.navigate(['/securitylist'])
+        location.reload();
         
       },
       error:(err)=>{

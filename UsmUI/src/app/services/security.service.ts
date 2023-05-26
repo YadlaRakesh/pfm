@@ -20,6 +20,9 @@ export class SecurityService {
   getAllSecurities(): Observable<Security[]>{
     return this.http.get<Security[]>("http://localhost:8899/api/composition/get");
   }
+  // getSecurities(portfolioName:string): Observable<Security[]>{
+  //   return this.http.get<Security[]>(`${this.http//localhost:8899/api/composition/get/security}?portfolioName=${portfolioName}`);
+  // }
 
   deleteSecurity(securityName:string): Observable<Object>{
     return this.http.delete(`http://localhost:8899/api/composition/delete/${securityName}`);
@@ -36,4 +39,8 @@ export class SecurityService {
   getAllstocks(){
     return this.http.get<nse[]>("http://localhost:8899/api/stocks/all")
   }
+
+  getSecurityByPortfolioName(portfolioName:string): Observable<Security[]>{
+       return this.http.get<Security[]>('http://localhost:8899/api/composition/get/security/'+portfolioName);
+     }
 }

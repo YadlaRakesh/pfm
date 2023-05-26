@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Portfolio } from 'src/app/models/Portfolio.model';
 import { PortfolioheaderService } from 'src/app/services/portfolioheader.service';
+import { SharedService } from '../services/shared.Service';
 
 @Component({
   selector: 'app-portfolioheader',
@@ -35,7 +36,12 @@ export class PortfolioheaderComponent implements OnInit {
     // fundamanagerName:new FormControl('')
   })
 
-  constructor(private portfolioService:PortfolioheaderService, private route:Router) { }
+  constructor(private portfolioService:PortfolioheaderService, private route:Router,
+    private sharedService:SharedService) { }
+
+    sendValue(portfolioName:any){
+      this.sharedService.setValue(portfolioName);
+    }
 
   ngOnInit(): void {
 
@@ -87,6 +93,7 @@ export class PortfolioheaderComponent implements OnInit {
         this.route.navigate(['/security'])
         console.log(data);
       localStorage.setItem("name",this.portfolio.portfolioName);
+      
       localStorage.setItem("iv",this.portfolio.investmentValue);
             },
       error:(err)=>{
