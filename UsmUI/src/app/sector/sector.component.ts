@@ -35,4 +35,8 @@ public portfolioArray: Portfolio[];
     confirm('Deleted!!')
     location.reload();
   }
+
+  // getPortFolioDetails(portfolioName, investmentValue) {
+
+  // }
 }

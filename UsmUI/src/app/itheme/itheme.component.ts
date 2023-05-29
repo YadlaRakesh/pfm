@@ -24,14 +24,14 @@ export class IthemeComponent implements OnInit {
     private route:Router) { }
 
   ngOnInit(): void {
-    this.assetClass  = [''];
-    this.portfolioService.getAsset().subscribe((data:any)=>{
-      this.assetClass=data;
-      console.log(this.assetClass);
-    })
+    // this.assetClass  = [''];
+    // this.portfolioService.getAsset().subscribe((data:any)=>{
+    //   this.assetClass=data;
+    //   console.log(this.assetClass);
+    // })
     this.themeForm = this.formgroup.group({ 
       themeName:'',
-      assetClass:'',
+      // assetClass:'',
       risk:'',
       investmentHorizon:''
   });
@@ -40,7 +40,7 @@ export class IthemeComponent implements OnInit {
   onSave(){
     this.theme = {
       themeName: this.themeForm.value.themeName,
-      assetClass: this.themeForm.value.assetClass,
+      // assetClass: this.themeForm.value.assetClass,
       risk: this.themeForm.value.risk,
       investmentHorizon:this.themeForm.value.investmentHorizon
       // : this.searchSecurityName.value.units * this.searchSecurityName.value.price,
@@ -48,33 +48,39 @@ export class IthemeComponent implements OnInit {
     };
     confirm('Theme Saved')
     console.log(this.theme);
-    this.route.navigate(['/header'])
+    // this.route.navigate(['/header'])
 
     this.securityService.postTheme(this.theme).subscribe({
       next: (data)=>{
         // this.route.navigate(['/securitylist'])
+        this.route.navigate(['/asset'])
         console.log(data);
+        this.securityService.getTheme$.next(data);
         localStorage.setItem("iTheme",this.theme.themeName);
+        // myres=Response.th
+        // alert(data.response.themeId);
+        // console.log(alert(data.response.themeId))
+        
       },
       error:(err)=>{
       }
     });
 }
-onClick(): void{
-  this.http.get<any>("http://localhost:8899/api/get").subscribe(
-    res => { const user = res.find((a:any) => {
-      console.log(this.themeForm.value.assetClass);
-      if (a.assetClass == this.themeForm.value.assetClass){
-        this.themeForm.value.assetClass=a.assetClass;
-        console.log(this.themeForm.value.assetClass)
-      }
-    })
+// onClick(): void{
+//   this.http.get<any>("http://localhost:8899/api/get").subscribe(
+//     res => { const user = res.find((a:any) => {
+//       console.log(this.themeForm.value.assetClass);
+//       if (a.assetClass == this.themeForm.value.assetClass){
+//         this.themeForm.value.assetClass=a.assetClass;
+//         console.log(this.themeForm.value.assetClass)
+//       }
+//     })
     
-    err => { 
-      return alert("There was an error" + err)
-    }
-  }
-  )
+//     err => { 
+//       return alert("There was an error" + err)
+//     }
+//   }
+//   )
 
-}
+// }
 }

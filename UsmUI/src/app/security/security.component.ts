@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { Observable } from 'rxjs';
 import { allstocks } from 'src/models/allstocks';
@@ -23,7 +23,7 @@ import { SharedService } from '../services/shared.Service';
 export class SecurityComponent implements OnInit {
   public securityArray: Security[];
   securityName:string;
-  investmentValue:any;
+  // investmentValue:any;
   // InvestmentValue:any;
   // stocksArr1:allstocks[];
   stocksArr1:nse;
@@ -48,16 +48,23 @@ export class SecurityComponent implements OnInit {
   totalTransaction : number[] =[];
   totalVal : number = 0;
   availableAmount : number = 0;
+
+  investmentValue : number;
   constructor(private allStocksService:AllStocksService,
     private securityService:SecurityService,
       public http:HttpClient,
       public formgroup:FormBuilder,
       private route:Router,private portfolioService:PortfolioheaderService,
-      private sharedService:SharedService
+      private sharedService:SharedService,
+      private activatedRoute : ActivatedRoute
       ) { }
 
 
   ngOnInit(): void {
+
+    this.portfolioName = this.activatedRoute.snapshot.params['portfolioName'];
+    this.investmentValue = this.activatedRoute.snapshot.params['investmentValue']
+    console.log(this.portfolioName+"  "+this.investmentValue);
     // this.totalTransaction.push(newValue);
     // this.getSecurity(this.portfolioName).subscribe(data =>{
     //   this.array=data;
@@ -75,8 +82,7 @@ export class SecurityComponent implements OnInit {
     //   }
     // })
 
-    let pName = localStorage.getItem("name")
-    this.securityService.getSecurityByPortfolioName(pName).subscribe({
+    this.securityService.getSecurityByPortfolioName(this.portfolioName).subscribe({
       next: (data)=>{
         this.array=data;
         console.log(this.array)
@@ -89,22 +95,12 @@ export class SecurityComponent implements OnInit {
           this.totalVal =this.totalVal + val;
         })
         console.log("TOTAL VALUE: "+this.totalVal)
-        this.availableAmount = parseInt(localStorage.getItem('iv')) - this.totalVal;
+        this.availableAmount = this.investmentValue - this.totalVal;
         console.log(this.availableAmount);
         // location.reload();
       }
     })
 
-    this.securityService.getSecurityByPortfolioName(pName).subscribe(
-      res=>{ const user = res.find((t:any)=>{
-        if(t.totalTransaction == this.searchSecurityName.value.totalTransaction){
-          this.searchSecurityName.value.totalTransaction=t.totalTransaction;
-          console.log(this.searchSecurityName.value.totalTransaction)
-          localStorage.setItem("one",this.security.totalTransaction)
-        }
-      })
-      
-      })
 
     // this.http.get<any>("http://localhost:8899/api/get").subscribe(
     //   res => { const user = res.find((a:any) => {

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Asset } from '../models/Asset.model';
 import { nse } from '../models/Nse';
 import { Security } from '../models/Securities.model';
@@ -12,7 +12,7 @@ import { Theme } from '../models/Theme.model';
 export class SecurityService {
   // private baseUrl = "http://localhost:8899/api/composition";
 
-  getSecurityDetails$ = new Subject<Security[]>();
+  getTheme$ = new BehaviorSubject<Theme>({});
 
   constructor(private http:HttpClient) { }
   postSecurity(security:Security,portfolioName:string): Observable<any>{
@@ -35,7 +35,7 @@ export class SecurityService {
   }
 
   postAsset(asset:Asset): Observable<any>{
-    return this.http.post("http://localhost:8899/api/add/asset",asset);
+    return this.http.post("http://localhost:8899/api/new/",asset);
   }
 
   getAllstocks(){

@@ -19,9 +19,9 @@
             </thead>
             <tbody>
             <tr *ngFor="let p of portfolioArray">
-            <td>{{p.portfolioName}}</td>
+            <td [routerLink]="['/security', p.portfolioName, p.investmentValue]" style="cursor: pointer;">{{p.portfolioName}}</td>
             <!-- <td>{{p.fundamanagerName}}</td> -->
-            <td>{{p.portfolioType}}</td>
+            <td >{{p.portfolioType}}</td>
             <td>{{p.baseCurrency}}</td>
             <td>{{p.rebalancingFrequency}}</td>
             <td>{{p.benchMark}}</td>

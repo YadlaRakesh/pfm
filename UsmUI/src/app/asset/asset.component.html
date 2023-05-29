@@ -1,14 +1,22 @@
 <div class= "am">
  <h2>Asset Management</h2>
+ <!-- <h3>{{themeDetails?.themeName}}</h3> -->
     <form [formGroup]="assetForm" (submit)="onSubmit()">
     <div class="all">
      <!-- <div class="tn">
      <label for="themeName">Theme Name</label>
     <input type="text" id="themeName" name="themeName">
     </div> -->
+    <!-- <p>{{themeDetails?.themeName}}</p>
+    <p>{{themeID}}</p> -->
+    <div class="tn"> 
+      <label for="themeId">Theme Id</label>
+      <input type="text" id="themeId" name="themeId" formControlName="themeId" [(ngModel)]="themeDetails.themeId">
+      <!-- <span class="error_msg" *ngIf="assetForm.controls['themeId'].touched"></span> -->
+       </div>
+
      <div class="ac"> 
     <label for="assetClass">Asset Class</label>
-
     <input type="text" id="assetClassText" name="assetClassText" formControlName="assetClass">
     <span class="error_msg" *ngIf="assetForm.controls['assetClass'].touched"></span>
      </div>

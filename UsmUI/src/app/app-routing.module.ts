@@ -41,7 +41,7 @@ children:[
   // { path:'all', component:AllStocksComponent},
   // { path:'industry',component:IndustryComponent},
   { path:'portfolio',component:SectorComponent},
-  { path:'security',component:SecurityComponent},
+  { path:'security/:portfolioName/:investmentValue',component:SecurityComponent},
   { path:'securitylist',component:SecurityListComponent},
   { path:'asset',component:AssetClassComponent},
   // { path:'theme',component:InvestmentThemeComponent},
