@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { Asset } from '../models/Asset.model';
 import { nse } from '../models/Nse';
 import { Security } from '../models/Securities.model';
@@ -11,6 +11,8 @@ import { Theme } from '../models/Theme.model';
 })
 export class SecurityService {
   // private baseUrl = "http://localhost:8899/api/composition";
+
+  getSecurityDetails$ = new Subject<Security[]>();
 
   constructor(private http:HttpClient) { }
   postSecurity(security:Security,portfolioName:string): Observable<any>{

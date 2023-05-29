@@ -38,12 +38,16 @@ export class SecurityComponent implements OnInit {
   total:number;
   portfolioName:string;
   availableBalance:any;
-  totalTransaction:number[]=[];
+  // totalTransaction:number[]=[];
   sum:number;
   portfolio:Portfolio;
   receivedName:any;
   receivedValue:any;
   numbers:number[]=[];
+  securityDetails : Security[] = [];
+  totalTransaction : number[] =[];
+  totalVal : number = 0;
+  availableAmount : number = 0;
   constructor(private allStocksService:AllStocksService,
     private securityService:SecurityService,
       public http:HttpClient,
@@ -63,11 +67,30 @@ export class SecurityComponent implements OnInit {
     // this.sum=this.calculateSum(this.totalTransaction);
     // console.log(this.sum)
 
+    // this.securityService.getSecurityDetails$.subscribe({
+    //   next : (data) => {
+    //     this.array = data;
+    //     console.log(this.array);
+        
+    //   }
+    // })
+
     let pName = localStorage.getItem("name")
     this.securityService.getSecurityByPortfolioName(pName).subscribe({
       next: (data)=>{
         this.array=data;
         console.log(this.array)
+        this.array.map((total) => {
+          console.log(total);
+          this.totalTransaction.push(total.totalTransaction);
+        })
+        console.log(this.totalTransaction);
+        this.totalTransaction.forEach((val) => {
+          this.totalVal =this.totalVal + val;
+        })
+        console.log("TOTAL VALUE: "+this.totalVal)
+        this.availableAmount = parseInt(localStorage.getItem('iv')) - this.totalVal;
+        console.log(this.availableAmount);
         // location.reload();
       }
     })
@@ -274,8 +297,9 @@ if (confirm("Press a button!") == true) {
     // document.write(investmentValue)
     this.securityService.postSecurity(this.security,localStorage.getItem("name")).subscribe({
       next: (data)=>{
+        
         // this.route.navigate(['/securitylist'])
-        location.reload();
+        // location.reload();
         
       },
       error:(err)=>{

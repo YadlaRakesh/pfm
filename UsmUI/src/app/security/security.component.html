@@ -52,10 +52,17 @@
   <p>{{handleAmount(()}}</p>
 </div> -->
 
-<p>Sum of Column Values is {{sum}}</p>
+<!-- <p>Sum of Column Values is {{sum}}</p> -->
       <div>
-        <p>Received Value:{{receivedValue}}</p>
+        <!-- <p>Received Value:{{receivedValue}}</p> -->
+        <p>Available Balance:{{availableAmount}}</p>
       </div>
+
+      <!-- <div>
+        <label>Available Balance</label>
+      <input type="text" formControlName="avbla" class="form-control" placeholder="avbl" [(ngModel)="availableAmount" readonly required>
+      <br>
+      </div> -->
      
       <div class="ac"> 
         <label for="securityName">Security Name</label>
@@ -65,6 +72,8 @@
         <span class="error_msg" *ngIf="searchSecurityName.controls['securityName'].touched">
         </span>
         </div>
+
+        
 
       <label>Transaction Date</label>
       <input type="date" formControlName="transactionDate" class="form-control" placeholder="Select Date" required>
