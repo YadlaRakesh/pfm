@@ -40,7 +40,8 @@
                 </span>
           </div>
           
-  
+          <!-- <p>investmentTheme:{{investmentTheme}}</p> -->
+          
           <div class="col-mb-3">
               <label class="form-label">Portfolio Type</label>
               <select class="form-control" formControlName="portfolioType">
@@ -83,15 +84,14 @@
               </span>
         </div>
        
-  
+ 
           <div class="col-mb-3">
               <label class="form-label">Investment Theme</label>
-              <select class="form-control" formControlName="investmentTheme">
-                  <option *ngFor="let i of investmentTheme" value="{{i}}">{{i}}
+              <select class="form-control" formControlName="investmentTheme" (click)="ngAfterContentInit()">
+                  <option *ngFor="let i of investmentTheme" value="i">{{i}}
               </option>
                 </select>
                 <span class="error_msg" *ngIf="createPortForm.controls['investmentTheme'].touched && createPortForm.controls['exchange'].invalid">
-                 
                 </span>
           </div>
           <br>

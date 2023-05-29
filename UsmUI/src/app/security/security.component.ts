@@ -38,6 +38,8 @@ export class SecurityComponent implements OnInit {
   total:number;
   portfolioName:string;
   availableBalance:any;
+  totalTransaction:number[]=[];
+  sum:number;
   portfolio:Portfolio;
   receivedName:any;
   receivedValue:any;
@@ -57,6 +59,10 @@ export class SecurityComponent implements OnInit {
     //   this.array=data;
     //   console.log(data)
     // })
+
+    // this.sum=this.calculateSum(this.totalTransaction);
+    // console.log(this.sum)
+
     let pName = localStorage.getItem("name")
     this.securityService.getSecurityByPortfolioName(pName).subscribe({
       next: (data)=>{
@@ -65,6 +71,30 @@ export class SecurityComponent implements OnInit {
         // location.reload();
       }
     })
+
+    this.securityService.getSecurityByPortfolioName(pName).subscribe(
+      res=>{ const user = res.find((t:any)=>{
+        if(t.totalTransaction == this.searchSecurityName.value.totalTransaction){
+          this.searchSecurityName.value.totalTransaction=t.totalTransaction;
+          console.log(this.searchSecurityName.value.totalTransaction)
+          localStorage.setItem("one",this.security.totalTransaction)
+        }
+      })
+      
+      })
+
+    // this.http.get<any>("http://localhost:8899/api/get").subscribe(
+    //   res => { const user = res.find((a:any) => {
+    //     console.log(this.themeForm.value.assetClass);
+    //     if (a.assetClass == this.themeForm.value.assetClass){
+    //       this.themeForm.value.assetClass=a.assetClass;
+    //       console.log(this.themeForm.value.assetClass)
+    //     }
+    //   })
+      
+      err => { 
+        return alert("There was an error" + err)
+      }
 
     // this.securityService.getAllSecurities().subscribe(data =>{
     //   this.securityArray = data;
@@ -253,4 +283,12 @@ if (confirm("Press a button!") == true) {
     });
 
   }
-  }
+  // calculateSum(totalTransaction:any){
+  //   let sum=0;
+  //   for(const value of totalTransaction){
+  //     sum+=value;
+  //   }
+  //   return sum;
+  //   console.log(sum);
+  // }
+   }

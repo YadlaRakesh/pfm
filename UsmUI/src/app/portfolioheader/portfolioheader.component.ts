@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -17,6 +18,7 @@ export class PortfolioheaderComponent implements OnInit {
   exchange:string[];
   rebalancingFrequency:string[];
   investmentTheme:string[];
+  // iTheme:string[];
   portfolioType: string[];
   p:string[];
   benchMark:string[];
@@ -36,11 +38,16 @@ export class PortfolioheaderComponent implements OnInit {
     // fundamanagerName:new FormControl('')
   })
 
-  constructor(private portfolioService:PortfolioheaderService, private route:Router,
+  constructor(private portfolioService:PortfolioheaderService, private route:Router,  public http:HttpClient,
     private sharedService:SharedService) { }
 
     sendValue(portfolioName:any){
       this.sharedService.setValue(portfolioName);
+    }
+    ngAfterContentInit(){
+      // investmentTheme:any[];
+      this.portfolio.investmentTheme = localStorage.getItem("iTheme");
+      console.log(localStorage.getItem("investmentTheme"))
     }
 
   ngOnInit(): void {
@@ -54,7 +61,7 @@ export class PortfolioheaderComponent implements OnInit {
     this.baseCurrency  = ['INR'];
     this.exchange = ['NSE','BSE'];
     this.rebalancingFrequency = ['Monthly','Quaterly','Half Yearly','Yearly'];
-    this.investmentTheme = ['Aggresive','Very Aggresive','Moderate Aggresive','Conservative','Moderate Conservative'];
+    this.investmentTheme = [''];
     this.portfolioType = ['Amount','Weightage'];
     this.benchMark = ['Nifty50'];
 
@@ -71,6 +78,7 @@ export class PortfolioheaderComponent implements OnInit {
     });
 
   }
+ 
 
   onSubmit(){
 
@@ -101,4 +109,21 @@ export class PortfolioheaderComponent implements OnInit {
       }
     });
   }
+  // onClick(): void{
+  //   this.http.get<any>("http://localhost:8899/api/get").subscribe(
+  //     res => { const user = res.find((a:any) => {
+  //       console.log(this.createPortForm.value.);
+  //       if (a.assetClass == this.createPortForm.value.assetClass){
+  //         this.createPortForm.value.assetClass=a.assetClass;
+  //         console.log(this.createPortForm.value.assetClass)
+  //       }
+  //     })
+      
+  //     err => { 
+  //       return alert("There was an error" + err)
+  //     }
+  //   }
+  //   )
+  
+  // } 
 }
