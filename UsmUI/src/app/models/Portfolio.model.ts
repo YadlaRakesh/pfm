@@ -11,6 +11,6 @@ export class Portfolio{
     currentValue?:number;
     balance?:number;
     returns?:number;
-    theme?:string;
+    themeName?:string;
     noofSecurities?:number;
 }

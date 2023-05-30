@@ -1,6 +1,7 @@
 export class Asset{
+    themeName?:string;
     assetClass?:string;
     subAssetClass?:string;
-    allocation?:string;
+    allocation?:number;
     assetDesc?:string;
 }

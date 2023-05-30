@@ -16,6 +16,9 @@ export class AssetComponent implements OnInit {
   investmentTheme:string;
   themeDetails : Theme
   themeID : number;
+  themeName: string;
+  asset1:Asset[];
+  
 
   assetForm = new FormGroup({
     assetClass: new FormControl(''),
@@ -34,6 +37,15 @@ export class AssetComponent implements OnInit {
       allocation: new FormControl('', [Validators.required]),
       assetDesc: new FormControl('', [Validators.required]),
     });
+
+    this.securityService.getAssetByThemeName(this.themeName).subscribe({
+      next:(data)=>{
+        console.log(this.themeName)
+        console.log(data);
+        this.asset1=data;
+        console.log(this.asset);
+      }
+    })
 
     this.securityService.getTheme$.subscribe({
       next : (data) => {
@@ -62,9 +74,9 @@ export class AssetComponent implements OnInit {
     confirm('Header Submitted')
     console.log(this.asset);
 
-    this.securityService.postAsset(this.asset).subscribe({
+    this.securityService.postAsset(this.asset,this.themeID).subscribe({
       next: (data)=>{
-        this.route.navigate(['/itheme'])
+        this.route.navigate(['/header']);
         // localStorage.setItem();
       },
       error:(err)=>{

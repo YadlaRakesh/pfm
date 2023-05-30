@@ -32,6 +32,7 @@ const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path:'portfolio',component:SectorComponent},
   { path:'asset',component:AssetComponent},
+  { path:'assetlist',component:AssetClassComponent},
   { path:'itheme',component:IthemeComponent},
   { path:'',component:MainHomeComponent,
 

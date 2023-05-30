@@ -87,8 +87,8 @@
  
           <div class="col-mb-3">
               <label class="form-label">Investment Theme</label>
-              <select class="form-control" formControlName="investmentTheme" (click)="ngAfterContentInit()">
-                  <option *ngFor="let i of investmentTheme" value="i">{{i}}
+              <select class="form-control" formControlName="investmentTheme" [ngModel]="selected">
+                  <option *ngFor="let i of theme" value="{{i.themeName}}">{{i.themeName}}
               </option>
                 </select>
                 <span class="error_msg" *ngIf="createPortForm.controls['investmentTheme'].touched && createPortForm.controls['exchange'].invalid">

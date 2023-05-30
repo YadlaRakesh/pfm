@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Asset } from '../models/Asset.model';
 import { Portfolio } from '../models/Portfolio.model';
+import { Theme } from '../models/Theme.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,7 +23,7 @@ export class PortfolioheaderService {
   //   return this.http.get("http://localhost:8899/api/portfolio/name/"+portfolioName);
   // }
   getTheme():Observable<any>{
-    return this.http.get(`${this.baseurl1}/${this.getTheme}`);
+    return this.http.get<Theme[]>('http://localhost:8899/api/theme/getAll');
   }
 
   getAllPortfolios(): Observable<Portfolio[]>{

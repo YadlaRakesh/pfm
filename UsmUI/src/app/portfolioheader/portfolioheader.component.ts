@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Portfolio } from 'src/app/models/Portfolio.model';
 import { PortfolioheaderService } from 'src/app/services/portfolioheader.service';
+import { Theme } from '../models/Theme.model';
 import { SharedService } from '../services/shared.Service';
 
 @Component({
@@ -14,10 +15,12 @@ import { SharedService } from '../services/shared.Service';
 export class PortfolioheaderComponent implements OnInit {
 
   portfolio:Portfolio;
+  theme:Theme[];
   baseCurrency:string[];
   exchange:string[];
   rebalancingFrequency:string[];
-  investmentTheme:string[];
+  themeName:string;
+  selected:string;
   // iTheme:string[];
   portfolioType: string[];
   p:string[];
@@ -56,12 +59,16 @@ export class PortfolioheaderComponent implements OnInit {
     //   this.p=data;
     // })
 
+    this.portfolioService.getTheme().subscribe(data =>{
+      this.theme = data;
+      console.log("data")
+    })
   
 
     this.baseCurrency  = ['INR'];
     this.exchange = ['NSE','BSE'];
     this.rebalancingFrequency = ['Monthly','Quaterly','Half Yearly','Yearly'];
-    this.investmentTheme = [''];
+    this.themeName = '';
     this.portfolioType = ['Amount','Weightage'];
     this.benchMark = ['Nifty50'];
 
@@ -85,7 +92,7 @@ export class PortfolioheaderComponent implements OnInit {
     this.portfolio = {
       rebalancingFrequency: this.createPortForm.value.rebalancingFrequency,
       baseCurrency: this.createPortForm.value.baseCurrency,
-      investmentTheme: this.createPortForm.value.investmentTheme,
+      themeName: this.createPortForm.value.investmentTheme,
       portfolioName: this.createPortForm.value.portfolioName,
       portfolioType: this.createPortForm.value.portfolioType,
       benchMark: this.createPortForm.value.benchMark,
@@ -109,21 +116,7 @@ export class PortfolioheaderComponent implements OnInit {
       }
     });
   }
-  // onClick(): void{
-  //   this.http.get<any>("http://localhost:8899/api/get").subscribe(
-  //     res => { const user = res.find((a:any) => {
-  //       console.log(this.createPortForm.value.);
-  //       if (a.assetClass == this.createPortForm.value.assetClass){
-  //         this.createPortForm.value.assetClass=a.assetClass;
-  //         console.log(this.createPortForm.value.assetClass)
-  //       }
-  //     })
-      
-  //     err => { 
-  //       return alert("There was an error" + err)
-  //     }
-  //   }
-  //   )
   
-  // } 
+  
+    
 }

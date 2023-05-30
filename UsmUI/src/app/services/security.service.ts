@@ -34,8 +34,8 @@ export class SecurityService {
     return this.http.post("http://localhost:8899/api/add/theme",theme);
   }
 
-  postAsset(asset:Asset): Observable<any>{
-    return this.http.post("http://localhost:8899/api/new/",asset);
+  postAsset(asset:Asset,themeId): Observable<any>{
+    return this.http.post("http://localhost:8899/api/new/"+themeId,asset);
   }
 
   getAllstocks(){
@@ -45,4 +45,8 @@ export class SecurityService {
   getSecurityByPortfolioName(portfolioName:string): Observable<Security[]>{
        return this.http.get<Security[]>('http://localhost:8899/api/composition/get/security/'+portfolioName);
      }
+
+     getAssetByThemeName(themeName:string): Observable<Asset[]>{
+      return this.http.get<Asset[]>('http://localhost:8899/api/asset/'+themeName);
+    }
 }
