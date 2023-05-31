@@ -65,6 +65,7 @@ export class SecurityComponent implements OnInit {
     this.portfolioName = this.activatedRoute.snapshot.params['portfolioName'];
     this.investmentValue = this.activatedRoute.snapshot.params['investmentValue']
     console.log(this.portfolioName+"  "+this.investmentValue);
+    
     // this.totalTransaction.push(newValue);
     // this.getSecurity(this.portfolioName).subscribe(data =>{
     //   this.array=data;
@@ -101,6 +102,10 @@ export class SecurityComponent implements OnInit {
       }
     })
 
+
+
+      
+    
 
     // this.http.get<any>("http://localhost:8899/api/get").subscribe(
     //   res => { const user = res.find((a:any) => {

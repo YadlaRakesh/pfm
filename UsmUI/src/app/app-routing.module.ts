@@ -47,7 +47,7 @@ children:[
   { path:'asset',component:AssetClassComponent},
   // { path:'theme',component:InvestmentThemeComponent},
   { path:'theme',component:ViewthemeComponent},
-  // { path:'symbol',component:SymbolComponent},
+  { path:'symbol',component:SymbolComponent},
   // { path:'isin_no',component:IsinNoComponent},
   // { path:'contact',component:FooterComponent},
   // { path:'about',component:PublicHomeComponent},

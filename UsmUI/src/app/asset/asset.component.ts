@@ -77,6 +77,7 @@ export class AssetComponent implements OnInit {
     this.securityService.postAsset(this.asset,this.themeID).subscribe({
       next: (data)=>{
         this.route.navigate(['/header']);
+        console.log(this.route.navigate(['/header']));
         // localStorage.setItem();
       },
       error:(err)=>{

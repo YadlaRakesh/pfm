@@ -21,10 +21,10 @@ export class AssetClassComponent implements OnInit {
     // console.log(this.getAsset)
 
     this.themeName = this.activatedRoute.snapshot.params['themeName'];
-
+    localStorage.getItem("tName");
     console.log(this.themeName);
 
-    this.securityService.getAssetByThemeName("Very").subscribe({
+    this.securityService.getAssetByThemeName(localStorage.getItem("tName")).subscribe({
       next:(data)=>{
         console.log(data);
         this.asset=data;
