@@ -21,10 +21,15 @@ export class AssetComponent implements OnInit {
   
 
   assetForm = new FormGroup({
+    assetId: new FormControl(''),
     assetClass: new FormControl(''),
     subAssetClass: new FormControl(''),
-    allocation: new FormControl(''),   
-    assetDesc: new FormControl('')
+    liquidity: new FormControl(''),
+    returns: new FormControl(''),
+    InvestmentHorizon: new FormControl(''),
+    Risk: new FormControl('')
+    // allocation: new FormControl(''),   
+    // assetDesc: new FormControl('')
   })
   constructor(private securityService:SecurityService,  private route:Router) { }
 
@@ -32,11 +37,19 @@ export class AssetComponent implements OnInit {
 
     this.assetForm = new FormGroup({
       themeId: new FormControl(''),
+      assetId: new FormControl('', [Validators.required]),
       assetClass: new FormControl('', [Validators.required]),
       subAssetClass: new FormControl('', [Validators.required]),
-      allocation: new FormControl('', [Validators.required]),
-      assetDesc: new FormControl('', [Validators.required]),
+      liquidity: new FormControl('', [Validators.required]),
+      returns: new FormControl('', [Validators.required]),
+      InvestmentHorizon: new FormControl('', [Validators.required]),
+      Risk: new FormControl('', [Validators.required]),
+      // allocation: new FormControl('', [Validators.required]),
+      // assetDesc: new FormControl('', [Validators.required]),
     });
+
+    
+
 
     this.securityService.getAssetByThemeName(this.themeName).subscribe({
       next:(data)=>{
@@ -67,22 +80,31 @@ export class AssetComponent implements OnInit {
 
     this.asset = {
       assetClass: this.assetForm.value.assetClass,
+      assetId: this.assetForm.value.assetId,
       subAssetClass: this.assetForm.value.subAssetClass,
-      allocation: this.assetForm.value.allocation,
-      assetDesc: this.assetForm.value.assetDesc,
+      liquidity: this.assetForm.value.liquidity,
+      returns: this.assetForm.value.returns,
+      InvestmentHorizon: this.assetForm.value.InvestmentHorizon,
+      risk: this.assetForm.value.Risk,
+      // allocation: this.assetForm.value.allocation,
+      // assetDesc: this.assetForm.value.assetDesc,
     };
-    confirm('Header Submitted')
+    // confirm('Header Submitted')
     console.log(this.asset);
 
     this.securityService.postAsset(this.asset,this.themeID).subscribe({
       next: (data)=>{
-        this.route.navigate(['/header']);
-        console.log(this.route.navigate(['/header']));
+        this.route.navigateByUrl('/head');
+        // console.log(this.route.navigate(['/header']));
         // localStorage.setItem();
       },
       error:(err)=>{
       }
     });
+   
 }
+// onRakesh(){
+//   this.route.navigate(['/head']);
+// }
 
 }

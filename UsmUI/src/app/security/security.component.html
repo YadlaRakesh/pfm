@@ -65,6 +65,17 @@
       </div> -->
      
       <div class="ac"> 
+        <label for="assetClass">Asset Class</label>
+        <select id="inputState" class="input-text" formControlName="assetClass" placeholder="Enter assetClass" style="width: 15rem;" [value]="searchSecurityName.value.assetClass" [ngModel]="selectedasset" (change)="onSelect($event)">
+          <option *ngFor="let s of asset" value="{{s.assetId}}">{{s.assetClass}}</option>
+        </select>
+        <span class="error_msg" *ngIf="searchSecurityName.controls['securityName'].touched">
+        </span>
+        </div>
+        <br>
+        selected Value{{assetId}}
+
+      <div class="ac"> 
         <label for="securityName">Security Name</label>
         <select id="inputState" class="input-text" formControlName="securityName" placeholder="Enter securityName" style="width: 15rem;" [value]="searchSecurityName.value.securityName" [ngModel]="selected" (click)="onClick($event)">
           <option *ngFor="let s of stock" value="{{s.symbol}}">{{s.securityName}}</option>

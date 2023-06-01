@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { Observable } from 'rxjs';
 import { allstocks } from 'src/models/allstocks';
+import { Asset } from '../models/Asset.model';
 import { nse } from '../models/Nse';
 import { Portfolio } from '../models/Portfolio.model';
 import { Security } from '../models/Securities.model';
@@ -26,6 +27,7 @@ export class SecurityComponent implements OnInit {
   // investmentValue:any;
   // InvestmentValue:any;
   // stocksArr1:allstocks[];
+  asset: Asset[];
   stocksArr1:nse;
   array:Security[];
   searchSecurityName: any;
@@ -38,6 +40,7 @@ export class SecurityComponent implements OnInit {
   total:number;
   portfolioName:string;
   availableBalance:any;
+  assetId:any;
   // totalTransaction:number[]=[];
   sum:number;
   portfolio:Portfolio;
@@ -48,6 +51,7 @@ export class SecurityComponent implements OnInit {
   totalTransaction : number[] =[];
   totalVal : number = 0;
   availableAmount : number = 0;
+  selectedasset:string;
 
   investmentValue : number;
   constructor(private allStocksService:AllStocksService,
@@ -60,11 +64,27 @@ export class SecurityComponent implements OnInit {
       ) { }
 
 
+      onSelect(a){
+        this.assetId=a.target.value;
+        localStorage.setItem("assetId",this.assetId);
+        console.log(this.assetId);
+
+        this.getAssets();
+      }
+
+
   ngOnInit(): void {
 
     this.portfolioName = this.activatedRoute.snapshot.params['portfolioName'];
     this.investmentValue = this.activatedRoute.snapshot.params['investmentValue']
     console.log(this.portfolioName+"  "+this.investmentValue);
+
+    this.securityService.getStockByAsset(localStorage.getItem("assetId")).subscribe(data=>{
+      this.stock=data;
+      console.log("stock data");
+      console.log(localStorage.getItem("assetId"));
+      console.log(data);
+    })
     
     // this.totalTransaction.push(newValue);
     // this.getSecurity(this.portfolioName).subscribe(data =>{
@@ -82,7 +102,20 @@ export class SecurityComponent implements OnInit {
         
     //   }
     // })
+   
 
+    this.securityService.getAsset().subscribe({
+      next:(data)=>{
+        this.asset=data;
+
+        console.log(this.asset);
+      }
+    })
+    // this.securityService.getStockByAsset(localStorage.getItem('assetId')).subscribe({
+    //   next:(data)=>{
+    //     this.stock=data;
+    //   }
+    // })
     this.securityService.getSecurityByPortfolioName(this.portfolioName).subscribe({
       next: (data)=>{
         this.array=data;
@@ -102,11 +135,6 @@ export class SecurityComponent implements OnInit {
       }
     })
 
-
-
-      
-    
-
     // this.http.get<any>("http://localhost:8899/api/get").subscribe(
     //   res => { const user = res.find((a:any) => {
     //     console.log(this.themeForm.value.assetClass);
@@ -124,9 +152,7 @@ export class SecurityComponent implements OnInit {
     //   this.securityArray = data;
     // });
     this.receivedValue = this.sharedService.getValue();
-    this.securityService.getAllstocks().subscribe(data=>{
-      this.stock=data;
-    })
+
       this.searchSecurityName = this.formgroup.group({ 
       securityName:'',
       units:'',
@@ -165,6 +191,7 @@ export class SecurityComponent implements OnInit {
     this.receivedValue = localStorage.getItem("iv")
     console.log(localStorage.getItem("name"))
     this.receivedName = localStorage.getItem("name")
+    
 
   }
 
@@ -316,4 +343,15 @@ if (confirm("Press a button!") == true) {
   //   return sum;
   //   console.log(sum);
   // }
+
+  getAssets(){
+    // this.assetId = "10009";
+    console.log(this.assetId.replace(/"([^"]+(?="))"/g, '$1'));
+    this.securityService.getStockByAsset(this.assetId.replace(/"([^"]+(?="))"/g, '$1')).subscribe(data=>{
+      this.stock=data;
+      console.log("stock data");
+
+      console.log(data);
+    })
+  }
    }

@@ -49,4 +49,13 @@ export class SecurityService {
      getAssetByThemeName(themeName:string): Observable<Asset[]>{
       return this.http.get<Asset[]>('http://localhost:8899/api/asset/'+themeName);
     }
+
+    getAsset(): Observable<Asset[]>{
+      return this.http.get<Asset[]>('http://localhost:8899/api/get')
+    }
+
+
+    getStockByAsset(assetId: any): Observable<nse[]>{
+      return this.http.get<nse[]>('http://localhost:8899/api/stocks/asset/'+assetId);
+    }
 }

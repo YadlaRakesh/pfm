@@ -28,30 +28,32 @@ import { AssetComponent } from './asset/asset.component';
 
 
 
+
 const routes: Routes = [
   { path: '', redirectTo: '/', pathMatch: 'full' },
   { path:'portfolio',component:SectorComponent},
   { path:'asset',component:AssetComponent},
-  { path:'assetlist',component:AssetClassComponent},
   { path:'itheme',component:IthemeComponent},
   { path:'',component:MainHomeComponent,
 
 children:[
   { path: '', component:PublicHomeComponent },
   { path:'landing',component:SectorComponent},
-  // { path:'all', component:AllStocksComponent},
+  { path:'all', component:AllStocksComponent},
   // { path:'industry',component:IndustryComponent},
   { path:'portfolio',component:SectorComponent},
   { path:'security/:portfolioName/:investmentValue',component:SecurityComponent},
   { path:'securitylist',component:SecurityListComponent},
-  { path:'asset',component:AssetClassComponent},
-  // { path:'theme',component:InvestmentThemeComponent},
-  { path:'theme',component:ViewthemeComponent},
-  { path:'symbol',component:SymbolComponent},
+ { path:'asset',component:AssetComponent},
+ { path:'assetlist',component:AssetClassComponent},
+  { path:'theme',component:InvestmentThemeComponent},
+  { path:'head',component:PortfolioheaderComponent}
+  // { path:'theme',component:ViewthemeComponent},
+  // { path:'symbol',component:SymbolComponent},
   // { path:'isin_no',component:IsinNoComponent},
   // { path:'contact',component:FooterComponent},
   // { path:'about',component:PublicHomeComponent},
-  { path:'header',component:PortfolioheaderComponent}
+  // { path:'header',component:PortfolioheaderComponent}
 
 ]
 },
