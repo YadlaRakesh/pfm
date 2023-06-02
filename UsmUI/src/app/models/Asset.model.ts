@@ -7,6 +7,6 @@ export class Asset{
     risk?:string;
     InvestmentHorizon?:string;
     returns?:string;
-    // allocation?:number;
+    allocation?:number;
     // assetDesc?:string;
 }

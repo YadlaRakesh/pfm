@@ -105,7 +105,7 @@ export class PortfolioheaderComponent implements OnInit {
 
     this.portfolioService.postPortfolio(this.portfolio).subscribe({
       next: (data)=>{
-        this.route.navigate(['/security'])
+        this.route.navigate(['/landing'])
         console.log(data);
       localStorage.setItem("name",this.portfolio.portfolioName);
       

@@ -29,7 +29,7 @@
             <td>{{p.investmentValue}}</td>
             <!-- <td>{{p.balance}}</td> -->
             <!-- [routerLink]="['/assetlist', p.themeName]" style="cursor: pointer;" -->
-            <td><a class="a" (click)="click(p.themeName)" style="text-decoration:none ; color:#0c0000 ;">{{p.themeName}}</a></td>
+            <td style="cursor: pointer;"><a class="a" (click)="click(p.themeName)" style="text-decoration:none ; color:#0c0000 ;">{{p.themeName}}</a></td>
             <td>
                 <button class="btn btn-success" routerLink="/theme">View</button>
                 <button (click) = "deletePortfolio(p.portfolioName)" class="btn btn-danger" style="margin-left: 10px;">Delete</button>

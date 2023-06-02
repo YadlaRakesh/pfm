@@ -126,6 +126,7 @@ export class SecurityComponent implements OnInit {
         })
         console.log(this.totalTransaction);
         this.totalTransaction.forEach((val) => {
+          // const number=val.toFixed(2);
           this.totalVal =this.totalVal + val;
         })
         console.log("TOTAL VALUE: "+this.totalVal)
@@ -155,6 +156,7 @@ export class SecurityComponent implements OnInit {
 
       this.searchSecurityName = this.formgroup.group({ 
       securityName:'',
+      assetClass:'',
       units:'',
       price:'',
       totalTransaction:'',
@@ -307,6 +309,7 @@ if (confirm("Press a button!") == true) {
   onSave(){
     this.security = {
       securityName: this.searchSecurityName.value.securityName,
+      assetClass:this.searchSecurityName.value.assetClass,
       transactionDate: this.searchSecurityName.value.transactionDate,
       units: this.searchSecurityName.value.units,
       price: this.searchSecurityName.value.price,
@@ -332,8 +335,9 @@ if (confirm("Press a button!") == true) {
       },
       error:(err)=>{
       }
+      
     });
-
+    location.reload();
   }
   // calculateSum(totalTransaction:any){
   //   let sum=0;

@@ -69,29 +69,41 @@
         <select id="inputState" class="input-text" formControlName="assetClass" placeholder="Enter assetClass" style="width: 15rem;" [value]="searchSecurityName.value.assetClass" [ngModel]="selectedasset" (change)="onSelect($event)">
           <option *ngFor="let s of asset" value="{{s.assetId}}">{{s.assetClass}}</option>
         </select>
-        <span class="error_msg" *ngIf="searchSecurityName.controls['securityName'].touched">
+        <span class="error_msg" *ngIf="searchSecurityName.controls['assetClass'].touched"> 
         </span>
         </div>
         <br>
-        selected Value{{assetId}}
+
+
+        <!-- selected Value{{assetId}} -->
 
       <div class="ac"> 
         <label for="securityName">Security Name</label>
         <select id="inputState" class="input-text" formControlName="securityName" placeholder="Enter securityName" style="width: 15rem;" [value]="searchSecurityName.value.securityName" [ngModel]="selected" (click)="onClick($event)">
           <option *ngFor="let s of stock" value="{{s.symbol}}">{{s.securityName}}</option>
         </select>
-        <span class="error_msg" *ngIf="searchSecurityName.controls['securityName'].touched">
+        <span class="error_msg" *ngIf="searchSecurityName.controls['securityName'].touched"> 
         </span>
         </div>
 
         
 
-      <label>Transaction Date</label>
+      <div>
+        <label>Transaction Date</label>
       <input type="date" formControlName="transactionDate" class="form-control" placeholder="Select Date" required>
+      <span class="error_msg" *ngIf="searchSecurityName.controls['transactionDate'].touched && searchSecurityName.controls['transactionDate'].invalid">
+        <span *ngIf="searchSecurityName.controls['transactionDate'].errors['required']" style="color:red">* Select Date</span>
+        <span *ngIf="searchSecurityName.controls['transactionDate'].errors['pattern']">Select Date</span>
+      </span>
       <br>
+      </div>
 
       <label>Units</label>
       <input type="text" formControlName="units" class="form-control" placeholder="Enter Units" [value]="searchSecurityName.value.units" required>
+      <!-- <span class="error_msg" *ngIf="searchSecurityName.controls['units'].touched && searchSecurityName.controls['units'].invalid">
+        <span *ngIf="searchSecurityName.controls['units'].errors['required']" style="color:red">* Enter Units</span>
+        <span *ngIf="searchSecurityName.controls['units'].errors['pattern']">ENter Units</span>
+      </span> -->
       <br>
 
       <label>Price</label>
@@ -102,12 +114,11 @@
       <br>
 
       <label>Total</label>
-      <input type="text" formControlName="totalTransaction" class="form-control" placeholder="Total" [value]="searchSecurityName.value.units * searchSecurityName.value.price" required>
+      <input type="text" formControlName="totalTransaction" class="form-control" placeholder="Total" readonly [value]="searchSecurityName.value.units * searchSecurityName.value.price" required>
       <br>
 
-      <!-- <label>Allocation</label>
-      <input type="text" formControlName="allocation" class="form-control" placeholder="allocation" required>
-      <br> -->
+      
+
       <button type="submit" class="btn btn-primary">Save</button>
 
     </form>
@@ -119,6 +130,7 @@
     <table class="table table-striped">
     <thead>
     <th>Security Name</th>
+    <!-- <th>Asset Class</th> -->
     <th>Transaction Date</th>
     <th>Units</th>
     <th>Price</th>
@@ -129,6 +141,7 @@
     <tbody>
     <tr *ngFor="let s of array">
     <td>{{s.securityName}}</td>
+    <!-- <td>{{s.assetClass}}</td> -->
     <td>{{s.transactionDate}}</td>
     <td>{{s.units}}</td>
     <td>{{s.price}}</td>

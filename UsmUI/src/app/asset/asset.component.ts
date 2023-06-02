@@ -37,14 +37,14 @@ export class AssetComponent implements OnInit {
 
     this.assetForm = new FormGroup({
       themeId: new FormControl(''),
-      assetId: new FormControl('', [Validators.required]),
+      assetId: new FormControl('', [Validators.required,Validators.pattern('[0-9]')]),
       assetClass: new FormControl('', [Validators.required]),
       subAssetClass: new FormControl('', [Validators.required]),
       liquidity: new FormControl('', [Validators.required]),
       returns: new FormControl('', [Validators.required]),
       InvestmentHorizon: new FormControl('', [Validators.required]),
       Risk: new FormControl('', [Validators.required]),
-      // allocation: new FormControl('', [Validators.required]),
+      allocation: new FormControl('', [Validators.required]),
       // assetDesc: new FormControl('', [Validators.required]),
     });
 
@@ -81,27 +81,29 @@ export class AssetComponent implements OnInit {
     this.asset = {
       assetClass: this.assetForm.value.assetClass,
       assetId: this.assetForm.value.assetId,
+      allocation: this.assetForm.value.allocation,
       subAssetClass: this.assetForm.value.subAssetClass,
       liquidity: this.assetForm.value.liquidity,
       returns: this.assetForm.value.returns,
       InvestmentHorizon: this.assetForm.value.InvestmentHorizon,
       risk: this.assetForm.value.Risk,
-      // allocation: this.assetForm.value.allocation,
+      // allocation: this.assetForm.value.allocation
       // assetDesc: this.assetForm.value.assetDesc,
     };
     // confirm('Header Submitted')
     console.log(this.asset);
 
-    this.securityService.postAsset(this.asset,this.themeID).subscribe({
-      next: (data)=>{
-        this.route.navigateByUrl('/head');
+    this.securityService.postAsset(this.asset,this.themeID).subscribe((res:any)=>{
+      this.asset=res;
+      console.log(this.asset);
+        console.log("Redirected")
+       
         // console.log(this.route.navigate(['/header']));
         // localStorage.setItem();
-      },
-      error:(err)=>{
-      }
+    
+    
     });
-   
+    this.route.navigateByUrl('/head');
 }
 // onRakesh(){
 //   this.route.navigate(['/head']);

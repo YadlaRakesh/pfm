@@ -15,16 +15,43 @@
       <!-- <span class="error_msg" *ngIf="assetForm.controls['themeId'].touched"></span> -->
        </div>
 
+       <div>
+        <label for="assetId">Asset Id</label>
+        <input type="text" id="assetId" name="assetId" formControlName="assetId">
+       </div>
+
+       <div>
+        <br>
+  
+        <label for="subAssetClass">subAsset Class</label>
+      
+        <input type="text" id="subAssetClass" name="subAssetClass" formControlName="subAssetClass">
+       
+       </div>
+
      <div class="ac"> 
     <label for="assetClass">Asset Class</label>
     <input type="text" id="assetClassText" name="assetClassText" formControlName="assetClass">
-    <span class="error_msg" *ngIf="assetForm.controls['assetClass'].touched"></span>
+    <!-- <span class="error_msg" *ngIf="assetForm.controls['assetClass'].touched"></span> -->
      </div>
     
      <div class="sa">
-      <label for="subAssetClass">Sub-Asset Class</label>
-      <input type="text" id="subAssetClass" name="subAssetClass" formControlName="subAssetClass">
-      <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span>
+      <label for="returns">Returns</label>
+      <input type="text" id="returns" name="returns" formControlName="returns">
+      <!-- <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span> -->
+    
+     </div>
+     <div class="ri">
+      <label for="rRisk">Risk</label>
+      <input type="text" id="Risk" name="Risk" formControlName="Risk">
+      <!-- <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span> -->
+    
+     </div>
+
+     <div class="ri">
+      <label for="InvestmentHorizon">Investment Horizon</label>
+      <input type="text" id="InvestmentHorizon" name="InvestmentHorizon" formControlName="InvestmentHorizon">
+      <!-- <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span> -->
     
      </div>
     
@@ -36,7 +63,11 @@
       <label for="allocation">Allocation %</label>
     
       <input type="text" id="allocation" name="allocation" formControlName="allocation">
-      <span class="error_msg" *ngIf="assetForm.controls['allocation'].touched"></span>
+      <span class="error_msg" *ngIf="assetForm.controls['allocation'].touched && assetForm.controls['allocation'].invalid">
+        <span *ngIf="assetForm.controls['allocation'].errors['required']" style="color:red">* Enter Value in %</span>
+        <span *ngIf="assetForm.controls['allocation'].errors['pattern']">Value is required</span>
+      </span>
+      <!-- <span class="error_msg" *ngIf="assetForm.controls['allocation'].touched"></span> -->
      </div>
     
     
@@ -44,10 +75,10 @@
     
      <div class="ad">
     
-      <label for="assetDesc">Asset Description</label>
+      <label for="liquidity">Liquidity</label>
     
-      <input type="text" id="assetDesc" name="assetDesc" formControlName="assetDesc">
-      <span class="error_msg" *ngIf="assetForm.controls['assetDesc'].touched"></span>
+      <input type="text" id="liquidity" name="liquidity" formControlName="liquidity">
+      <!-- <span class="error_msg" *ngIf="assetForm.controls['assetDesc'].touched"></span> -->
     
      </div>
     
@@ -65,10 +96,7 @@
      </div>
     
     </form>
-    
-     </div>
-
-     <div class="scroll">
+    <div class="scroll">
       <table class="table table-bordered" border="5rem">
       <thead class="table-light">
       <th>Theme Name</th>
@@ -96,3 +124,7 @@
       </tbody>
       </table>
       </div>
+    
+     </div>
+
+     
