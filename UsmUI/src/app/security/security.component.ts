@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { stringify } from 'querystring';
 import { Observable } from 'rxjs';
 import { allstocks } from 'src/models/allstocks';
+import Swal from 'sweetalert2';
 import { Asset } from '../models/Asset.model';
 import { nse } from '../models/Nse';
 import { Portfolio } from '../models/Portfolio.model';
@@ -323,7 +324,8 @@ if (confirm("Press a button!") == true) {
 
     // this.availableBalance=this.portfolio.investmentValue-this.security.totalTransaction;
     localStorage.setItem("avbl",this.availableBalance);
-    confirm('Securities Saved')
+    // confirm('Securities Saved')
+    
     console.log(this.security);
     // document.write(investmentValue)
     this.securityService.postSecurity(this.security,localStorage.getItem("name")).subscribe({
@@ -331,14 +333,16 @@ if (confirm("Press a button!") == true) {
         
         // this.route.navigate(['/securitylist'])
         // location.reload();
-        
+        Swal.fire("Thank You...",'You added security successfully','success');
       },
       error:(err)=>{
       }
-      
+     
     });
+    Swal.fire("Thank You...",'You added security successfully','success');
     location.reload();
   }
+
   // calculateSum(totalTransaction:any){
   //   let sum=0;
   //   for(const value of totalTransaction){

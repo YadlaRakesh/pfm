@@ -15,25 +15,23 @@
       <!-- <span class="error_msg" *ngIf="assetForm.controls['themeId'].touched"></span> -->
        </div>
 
-       <div>
+       <div class="ai">
         <label for="assetId">Asset Id</label>
         <input type="text" id="assetId" name="assetId" formControlName="assetId">
        </div>
 
-       <div>
-        <br>
-  
-        <label for="subAssetClass">subAsset Class</label>
-      
+       <div class="ac"> 
+        <label for="assetClass">Asset Class</label>
+        <input type="text" id="assetClassText" name="assetClassText" formControlName="assetClass">
+        <!-- <span class="error_msg" *ngIf="assetForm.controls['assetClass'].touched"></span> -->
+         </div>
+
+       <div class="sac">
+        <label for="subAssetClass">SubAsset Class</label>
         <input type="text" id="subAssetClass" name="subAssetClass" formControlName="subAssetClass">
-       
        </div>
 
-     <div class="ac"> 
-    <label for="assetClass">Asset Class</label>
-    <input type="text" id="assetClassText" name="assetClassText" formControlName="assetClass">
-    <!-- <span class="error_msg" *ngIf="assetForm.controls['assetClass'].touched"></span> -->
-     </div>
+     
     
      <div class="sa">
       <label for="returns">Returns</label>
@@ -41,19 +39,21 @@
       <!-- <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span> -->
     
      </div>
-     <div class="ri">
+
+
+     <!-- <div class="ri">
       <label for="rRisk">Risk</label>
       <input type="text" id="Risk" name="Risk" formControlName="Risk">
-      <!-- <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span> -->
+      <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span>
     
-     </div>
+     </div> -->
 
-     <div class="ri">
+     <!-- <div class="ri">
       <label for="InvestmentHorizon">Investment Horizon</label>
       <input type="text" id="InvestmentHorizon" name="InvestmentHorizon" formControlName="InvestmentHorizon">
-      <!-- <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span> -->
+       <span class="error_msg" *ngIf="assetForm.controls['subAssetClass'].touched"></span>
     
-     </div>
+     </div> -->
     
     
     
@@ -64,8 +64,10 @@
     
       <input type="text" id="allocation" name="allocation" formControlName="allocation">
       <span class="error_msg" *ngIf="assetForm.controls['allocation'].touched && assetForm.controls['allocation'].invalid">
-        <span *ngIf="assetForm.controls['allocation'].errors['required']" style="color:red">* Enter Value in %</span>
-        <span *ngIf="assetForm.controls['allocation'].errors['pattern']">Value is required</span>
+        <span *ngIf="assetForm.controls['allocation'].errors['required']" style="color:red"> Enter Value in %</span>
+        <span *ngIf="assetForm.controls['allocation'].errors['min']">Minimum Percentage is required</span>
+        <span *ngIf="assetForm.controls['allocation'].errors['max']">Maximum Percentage is reached</span>
+        <span *ngIf="assetForm.controls['allocation'].errors['pattern']">ENter only Number</span>
       </span>
       <!-- <span class="error_msg" *ngIf="assetForm.controls['allocation'].touched"></span> -->
      </div>
@@ -74,57 +76,35 @@
     
     
      <div class="ad">
-    
       <label for="liquidity">Liquidity</label>
-    
       <input type="text" id="liquidity" name="liquidity" formControlName="liquidity">
       <!-- <span class="error_msg" *ngIf="assetForm.controls['assetDesc'].touched"></span> -->
-    
      </div>
-    
-    
-    
-    
-     <div class="su"><button type="submit">Save</button></div>
-    
-    
-    
-    
-    
-    
-    
+
      </div>
-    
+     <div class="su">
+     <button type="submit" class="btn btn-primary">Save</button>
+    </div>
     </form>
-    <div class="scroll">
+    
+     </div>
+     <!-- <div class="scroll">
       <table class="table table-bordered" border="5rem">
       <thead class="table-light">
       <th>Theme Name</th>
-      <!-- <th>fundamanagerName</th> -->
       <th>Asset Class</th>
       <th>Sub-Asset Class</th>
-      <!-- <th>Allocation %</th> -->
-      <!-- <th>Asset Description</th> -->
+      <th>Allocation %</th>
       </thead>
       <tbody>
-      <tr *ngFor="let p of asset1">
-      <!-- <td>{{p.portfolioName}}</td> -->
-      <!-- <td>{{p.fundamanagerName}}</td> -->
+      <tr *ngFor="let p of list">
       <td >{{p.themeName}}</td>
       <td>{{p.assetClass}}</td>
       <td>{{p.subAssetClass}}</td>
-      <!-- <td>{{p.allocation}}</td>
-      <td>{{p.assetDesc}}</td> -->
-     
-      <!-- <td> -->
-          <!-- <button class="btn btn-success" routerLink="/theme">View</button>
-          <button (click) = "deletePortfolio(p.portfolioName)" class="btn btn-danger" style="margin-left: 10px;">Delete</button> -->
-      <!-- </td> -->
+      <td>{{p.allocation}}</td>
       </tr>
       </tbody>
       </table>
-      </div>
-    
-     </div>
+      </div> -->
 
      

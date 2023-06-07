@@ -1,4 +1,5 @@
 export class Asset{
+    // themeId:number;
     themeName?:string;
     assetId?:any;
     assetClass?:string;

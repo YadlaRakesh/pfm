@@ -4,6 +4,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Portfolio } from 'src/app/models/Portfolio.model';
 import { PortfolioheaderService } from 'src/app/services/portfolioheader.service';
+import Swal from 'sweetalert2';
 import { Theme } from '../models/Theme.model';
 import { SharedService } from '../services/shared.Service';
 
@@ -100,7 +101,8 @@ export class PortfolioheaderComponent implements OnInit {
       investmentValue: this.createPortForm.value.investmentValue
       // fundamanagerName:this.createPortForm.value.fundamanagerName
     };
-    confirm('Header Submitted')
+    // confirm('Header Submitted')
+    Swal.fire("Thank You...",'You added Portfolio successfully','success');
     console.log(this.portfolio);
 
     this.portfolioService.postPortfolio(this.portfolio).subscribe({

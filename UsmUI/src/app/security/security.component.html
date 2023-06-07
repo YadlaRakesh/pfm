@@ -1,155 +1,93 @@
 <div class="card text-center">
-    <div class="card-header">
-      <!-- <form [formGroup]="searchSecurityName">    
-      <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by Security Name" aria-label="Recipient's username" aria-describedby="button-addon2"  formControlName="p.securityName" >
-        <button class="btn btn-outline-secondary" type="submit" id="button-addon2">Submit</button>
-      </div> -->
-
-      
-      <!-- <div class="mb-3">
-        <label for="exampleFormControlInput1" class="form-label">Transaction Date</label>
-        <input type="date" class="form-control" placeholder="Enter Transaction Date"
-        formControlName="transactionDate">
-        <span class="error_msg" *ngIf="searchSecurityName.controls['portfolioName'].touched"> 
-        </span>
-      </div>
-    <br>
-
-    <div class="mb-3">
-      <label for="exampleFormControlInput1" class="form-label">Units</label>
-      <input type="text" class="form-control" placeholder="Enter Units"
-      formControlName="units">
-      <span class="error_msg" *ngIf="searchSecurityName['units'].touched"> 
-      </span>
-    </div>
-  <br> -->
-
+      <div class="card-header col-sm-4">
+    <div class="col sm-6">
+      <form [formGroup]="searchSecurityName" (submit)="onSave()">
   
-
-  <!-- <div class="mb-3">
-      <label class="form-label">Price</label>
-      <input type="text" class="form-control" placeholder="Enter Price"
-      formControlName="allStockService.price" [value]="searchSecurityName.price">
-      <span class="error_msg" *ngIf="searchSecurityName['price'].touched"> 
-      </span>
-    </div>
-  <br> -->
-  <!-- <div class="input-group mb-3">
-        <input type="text" class="form-control" placeholder="Search by Security Name" aria-label="Recipient's username" aria-describedby="button-addon2"  formControlName="securityName" >
-        <button class="btn btn-outline-secondary" style="position: absolute; left:450px; top:0px;" type="submit" id="button-addon2">Submit</button>
-      </div>
-      <br> -->
-
-  <div class="col-sm">
-    <form [formGroup]="searchSecurityName" (submit)="onSave()">
-
-<div>
-  <p>Portfolio Name:{{portfolioName}}</p>
-</div>
-
-<!-- <div>
-  <p>{{handleAmount(()}}</p>
-</div> -->
-
-<!-- <p>Sum of Column Values is {{sum}}</p> -->
-      <div>
-        <!-- <p>Received Value:{{receivedValue}}</p> -->
-        <p>Available Balance:{{availableAmount}}</p>
-      </div>
-
-      <!-- <div>
-        <label>Available Balance</label>
-      <input type="text" formControlName="avbla" class="form-control" placeholder="avbl" [(ngModel)="availableAmount" readonly required>
-      <br>
-      </div> -->
-     
-      <div class="ac"> 
-        <label for="assetClass">Asset Class</label>
-        <select id="inputState" class="input-text" formControlName="assetClass" placeholder="Enter assetClass" style="width: 15rem;" [value]="searchSecurityName.value.assetClass" [ngModel]="selectedasset" (change)="onSelect($event)">
-          <option *ngFor="let s of asset" value="{{s.assetId}}">{{s.assetClass}}</option>
-        </select>
-        <span class="error_msg" *ngIf="searchSecurityName.controls['assetClass'].touched"> 
-        </span>
-        </div>
-        <br>
-
-
-        <!-- selected Value{{assetId}} -->
-
-      <div class="ac"> 
-        <label for="securityName">Security Name</label>
-        <select id="inputState" class="input-text" formControlName="securityName" placeholder="Enter securityName" style="width: 15rem;" [value]="searchSecurityName.value.securityName" [ngModel]="selected" (click)="onClick($event)">
-          <option *ngFor="let s of stock" value="{{s.symbol}}">{{s.securityName}}</option>
-        </select>
-        <span class="error_msg" *ngIf="searchSecurityName.controls['securityName'].touched"> 
-        </span>
-        </div>
-
-        
-
-      <div>
-        <label>Transaction Date</label>
-      <input type="date" formControlName="transactionDate" class="form-control" placeholder="Select Date" required>
-      <span class="error_msg" *ngIf="searchSecurityName.controls['transactionDate'].touched && searchSecurityName.controls['transactionDate'].invalid">
-        <span *ngIf="searchSecurityName.controls['transactionDate'].errors['required']" style="color:red">* Select Date</span>
-        <span *ngIf="searchSecurityName.controls['transactionDate'].errors['pattern']">Select Date</span>
-      </span>
-      <br>
-      </div>
-
-      <label>Units</label>
-      <input type="text" formControlName="units" class="form-control" placeholder="Enter Units" [value]="searchSecurityName.value.units" required>
-      <!-- <span class="error_msg" *ngIf="searchSecurityName.controls['units'].touched && searchSecurityName.controls['units'].invalid">
-        <span *ngIf="searchSecurityName.controls['units'].errors['required']" style="color:red">* Enter Units</span>
-        <span *ngIf="searchSecurityName.controls['units'].errors['pattern']">ENter Units</span>
-      </span> -->
-      <br>
-
-      <label>Price</label>
-      <ng-container>
-        <input type="text" formControlName="price" class="form-control" readonly placeholder="Enter Price" required [(ngModel)]="searchSecurityName.value.price">
-      </ng-container>
-    
-      <br>
-
-      <label>Total</label>
-      <input type="text" formControlName="totalTransaction" class="form-control" placeholder="Total" readonly [value]="searchSecurityName.value.units * searchSecurityName.value.price" required>
-      <br>
-
-      
-
-      <button type="submit" class="btn btn-primary">Save</button>
-
-    </form>
+  <div class="rec">
+    <p><b>PortFolio Name: </b> {{receivedName}}</p>
   </div>
-    </div>
-</div>
+        <div class="ava">
+          <p><b>Available Balance: </b>{{availableAmount}}</p>
+        </div>
 
-  <div class="scroll">
-    <table class="table table-striped">
-    <thead>
-    <th>Security Name</th>
-    <!-- <th>Asset Class</th> -->
-    <th>Transaction Date</th>
-    <th>Units</th>
-    <th>Price</th>
-    <th>TotalTransaction</th>
-    <!-- <th>Allocation</th> -->
-    <th>Action</th>
-    </thead>
-    <tbody>
-    <tr *ngFor="let s of array">
-    <td>{{s.securityName}}</td>
-    <!-- <td>{{s.assetClass}}</td> -->
-    <td>{{s.transactionDate}}</td>
-    <td>{{s.units}}</td>
-    <td>{{s.price}}</td>
-    <td>{{s.totalTransaction}}</td>
-    <!-- <td>{{s.allocation}}</td> -->
-    <!-- <td><button class="btn btn-primary">Edit</button></td> -->
-    <td><button (click) = "deleteSecurity(s.securityName)"class="btn btn-danger">Delete</button></td>
-    </tr>
-    </tbody>
-    </table>
+        <div class="ac col-sm-6"> 
+          <label for="assetClass">Asset Class</label>
+          <select id="inputState" class="input-text" formControlName="assetClass" placeholder="Enter assetClass" style="width: 15rem;" [value]="searchSecurityName.value.assetClass" [ngModel]="selectedasset" (change)="onSelect($event)">
+            <option *ngFor="let s of asset" value="{{s.assetId}}">{{s.assetClass}}</option>
+          </select>
+          <span class="error_msg" *ngIf="searchSecurityName.controls['assetClass'].touched"> 
+          </span>
+          </div>
+          <br>
+          
+        <div class="ac col-sm-6"> 
+          <label for="securityName">Security Name</label>
+          <select id="inputState" class="input-text" formControlName="securityName" placeholder="Enter securityName" style="width: 15rem;" [value]="searchSecurityName.value.securityName" [ngModel]="selected" (click)="onClick($event)">
+            <option *ngFor="let s of stock" value="{{s.symbol}}">{{s.securityName}}</option>
+          </select>
+          <span class="error_msg" *ngIf="searchSecurityName.controls['securityName'].touched">
+          </span>
+          </div>
+          <br>
+          <br>
+          
+         
+        <div class="col-sm-4">
+        <label>Transaction Date</label>
+        <input type="date" formControlName="transactionDate" class="form-control" placeholder="Select Date" required>
+        <br>
+        </div>
+  
+        <div class="unit col-sm-4">
+
+          <label>Units</label>
+    
+          <input type="text" formControlName="units" class="form-control" placeholder="Enter Units" [value]="searchSecurityName.value.units" required>
+    
+          <br>
+    
+           </div>
+  
+        <div class="price col-sm-4">
+        <label>Price</label>
+        <ng-container>
+          <input type="text" formControlName="price" class="form-control" readonly placeholder="Enter Price" required [(ngModel)]="searchSecurityName.value.price">
+        </ng-container>
+        <br>
+        </div>
+  
+        <div class="total col-sm-4">
+        <label>Total</label>
+        <input type="text" formControlName="totalTransaction" class="form-control" placeholder="Total" [value]="searchSecurityName.value.units * searchSecurityName.value.price" required>
+        <br>
+        </div>
+  
+        <button type="submit" class="btn btn-primary">Save</button>
+  
+      </form>
     </div>
+      </div>
+  </div>
+  <br>
+    <div class="scroll">
+      <table class="table table-striped">
+      <thead>
+      <th>Security Name</th>
+      <th>Transaction Date</th>
+      <th>Units</th>
+      <th>Price</th>
+      <th>TotalTransaction</th>
+      <th>Action</th>
+      </thead>
+      <tbody>
+      <tr *ngFor="let s of array">
+      <td>{{s.securityName}}</td>
+      <td>{{s.transactionDate}}</td>
+      <td>{{s.units}}</td>
+      <td>{{s.price}}</td>
+      <td>{{s.totalTransaction}}</td>
+      <td><button (click) = "deleteSecurity(s.securityName)"class="btn btn-danger">Delete</button></td>
+      </tr>
+      </tbody>
+      </table>
+      </div>

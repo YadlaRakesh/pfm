@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Theme } from '../models/Theme.model';
 import { PortfolioheaderService } from '../services/portfolioheader.service';
 import { SecurityService } from '../services/security.service';
@@ -46,7 +47,8 @@ export class IthemeComponent implements OnInit {
       // : this.searchSecurityName.value.units * this.searchSecurityName.value.price,
       // allocation:this.searchSecurityName.value.allocation
     };
-    confirm('Theme Saved')
+    // confirm('Theme Saved')
+    Swal.fire("Thank You...",'Theme added successfully','success');
     console.log(this.theme);
     // this.route.navigate(['/header'])
 

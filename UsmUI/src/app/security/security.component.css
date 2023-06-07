@@ -10,10 +10,10 @@
 }
 
 .card-header{
-    width: 50%;
+    /* width: 80%; */
     /* padding-right: 50%; */
-    margin: auto;
-  width: 50%;
+    margin:auto;
+  width: 60%;
   border: 3px solid green;
   padding: 10px;
   background-color: rgb(138, 250, 201);
@@ -25,15 +25,15 @@
     left:45%;
     position: absolute;
     transform: translate(-50%,-50%);
-    width: 25%;
+    width: 20%;
 }
 
 .form-control{
     width: 40%;
-    text-align: center;
+    text-align:left;
     /* float: right; */
-    margin-left: 30%;
-    margin-right: 30%;
+    margin-left:40%;
+    /* margin-right: 40%; */
     /* position: relative; */
     /* margin-top: -2%; */
     /* margin-right: 100%; */
@@ -44,10 +44,36 @@
     /* float:right; */
     position: relative;
 }
-/* .btn{
-    border-radius: 8px;
-    height: 50px;
-    margin-left: 10%;
-    margin-bottom: 20;
-} */
+.col-sm-8{
+    /* margin-left: 250px; */
+    margin-right: 180px;
+    margin-top: 55px;
+}
+.price{
+    margin-top: -80px;
+    margin-left:20% ;
+}
+.unit{
+    margin-left: 35%;
+    margin-top: -92px;
+}
 
+.rec{
+    margin-left: -4%;
+}
+.ava{
+    margin-left: -1%;
+}
+.ac{
+margin-left: 20%;
+
+}
+.sm{
+        margin-left: 20%;
+        display: inline-block;
+        margin-bottom: 1rem;
+}
+.total{
+    margin-left: 55%;
+    margin-top:-89px ;
+}

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Asset } from '../models/Asset.model';
 import { Theme } from '../models/Theme.model';
 import { SecurityService } from '../services/security.service';
@@ -12,6 +13,7 @@ import { SecurityService } from '../services/security.service';
 })
 export class AssetComponent implements OnInit {
 
+  list:Asset[];
   asset:Asset;
   investmentTheme:string;
   themeDetails : Theme
@@ -31,20 +33,32 @@ export class AssetComponent implements OnInit {
     // allocation: new FormControl(''),   
     // assetDesc: new FormControl('')
   })
-  constructor(private securityService:SecurityService,  private route:Router) { }
+  constructor(private securityService:SecurityService,  private route:Router, private activatedRoute : ActivatedRoute) { }
 
   ngOnInit(): void {
 
+    // this.themeName = this.activatedRoute.snapshot.params['themeName'];
+    localStorage.getItem("iTheme");
+    console.log(localStorage.getItem("iTheme"));
+
+    this.securityService.getAssetByThemeName(localStorage.getItem("iTheme")).subscribe({
+      next:(data)=>{
+        console.log(data);
+        this.list=data;
+        console.log(this.list);
+      }
+    })
+
     this.assetForm = new FormGroup({
       themeId: new FormControl(''),
-      assetId: new FormControl('', [Validators.required,Validators.pattern('[0-9]')]),
+      assetId: new FormControl('', [Validators.required]),
       assetClass: new FormControl('', [Validators.required]),
       subAssetClass: new FormControl('', [Validators.required]),
       liquidity: new FormControl('', [Validators.required]),
       returns: new FormControl('', [Validators.required]),
       InvestmentHorizon: new FormControl('', [Validators.required]),
       Risk: new FormControl('', [Validators.required]),
-      allocation: new FormControl('', [Validators.required]),
+      allocation: new FormControl('', [Validators.required,Validators.pattern("^[0-9]*$"),Validators.min(1),Validators.max(100)]),
       // assetDesc: new FormControl('', [Validators.required]),
     });
 
@@ -91,10 +105,12 @@ export class AssetComponent implements OnInit {
       // assetDesc: this.assetForm.value.assetDesc,
     };
     // confirm('Header Submitted')
+    Swal.fire("Thank You...",'Asset added successfully','success');
     console.log(this.asset);
 
     this.securityService.postAsset(this.asset,this.themeID).subscribe((res:any)=>{
       this.asset=res;
+      location.reload();
       console.log(this.asset);
         console.log("Redirected")
        
@@ -103,10 +119,8 @@ export class AssetComponent implements OnInit {
     
     
     });
-    this.route.navigateByUrl('/head');
+    // this.route.navigateByUrl('/head');
 }
-// onRakesh(){
-//   this.route.navigate(['/head']);
-// }
+
 
 }
